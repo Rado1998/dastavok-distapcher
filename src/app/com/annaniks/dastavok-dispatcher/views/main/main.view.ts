@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MenuItemsService } from '../../services/menuItems.service';
 
 @Component({
     selector: 'main-view',
@@ -7,7 +8,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class MainView implements OnInit, OnDestroy {
 
-    constructor() { }
+    constructor(public menuItemsService: MenuItemsService) { }
 
     ngOnInit() { }
 

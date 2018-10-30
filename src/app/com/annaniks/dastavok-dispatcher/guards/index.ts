@@ -1,0 +1,1 @@
+export * from 'src/app/com/annaniks/dastavok-dispatcher/guards/authguard.service';
