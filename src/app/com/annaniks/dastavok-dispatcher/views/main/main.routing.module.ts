@@ -6,7 +6,8 @@ let mainRoutes: Routes = [
     {
         path: '', component: MainView, children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-            { path: 'dashboard', loadChildren: 'src/app/com/annaniks/dastavok-dispatcher/views/main/dashboard/dashboard.module#DashboardModule' }
+            { path: 'dashboard', loadChildren: 'src/app/com/annaniks/dastavok-dispatcher/views/main/dashboard/dashboard.module#DashboardModule' },
+            { path: 'profile', loadChildren: 'src/app/com/annaniks/dastavok-dispatcher/views/main/profile/profile.moduel#ProfileModule' }
         ]
     }
 ]
