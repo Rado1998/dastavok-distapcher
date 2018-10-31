@@ -23,7 +23,7 @@ export class ApiService {
      * @param observe - httpOption for get full response,not required
      * @param responseType - httpOption for get full response on type text
      */
-    public get(url: string, observe?, responseType?) {
+    public get(url: string, observe?, responseType?): Observable<Object> {
         let token = this._cookieService.get('token') || '';
         let headers = new HttpHeaders({
             'Content-type': 'application/json',
@@ -46,7 +46,7 @@ export class ApiService {
      * @param observe - httpOption for get full response
      * @param responseType 
      */
-    public post(url: string, body: object, observe?, responseType?) {
+    public post(url: string, body: object, observe?, responseType?): Observable<Object> {
         let token = this._cookieService.get('token') || '';
         let headers = new HttpHeaders({
             'Content-type': 'application/json',
@@ -61,7 +61,7 @@ export class ApiService {
         return this._httpClient.post(this._baseUrl + url, body, params);
     }
 
-    public postFormData(url: string, formData: FormData, observe?, responseType?) {
+    public postFormData(url: string, formData: FormData, observe?, responseType?): Observable<Object> {
         let token = this._cookieService.get('token') || '';
         let headers = new HttpHeaders({
             'token': token,
@@ -82,7 +82,7 @@ export class ApiService {
      * @param observe 
      * @param responseType 
      */
-    public put(url: string, body: object, observe?, responseType?) {
+    public put(url: string, body: object, observe?, responseType?): Observable<Object> {
         let token = this._cookieService.get('token') || '';
         let headers = new HttpHeaders({
             'Content-type': 'application/json',
@@ -103,7 +103,7 @@ export class ApiService {
      * @param observe 
      * @param responseType 
      */
-    public delete(url: string, observe?, responseType?) {
+    public delete(url: string, observe?, responseType?): Observable<Object> {
         let token = this._cookieService.get('token') || '';
         let headers = new HttpHeaders({
             'Content-type': 'application/json',
@@ -122,7 +122,7 @@ export class ApiService {
      * 
      */
     public checkToken(): Observable<boolean> {
-        return this.get('check/token', 'response', 'text')
+        return this.get('/check/token', 'response', 'text')
             .pipe(
                 map(() => {
                     return true;
@@ -133,14 +133,14 @@ export class ApiService {
     }
 
     private _getToken(): Observable<boolean> {
-        let token = this._cookieService.get('accessToken') || '';
+        let token = this._cookieService.get('token') || '';
         let refreshToken = this._cookieService.get('refreshToken') || '';
         let headers = new HttpHeaders({
             'Content-type': 'application/json',
             'token': token,
             'refreshToken': refreshToken
         })
-        return this._httpClient.get(this._baseUrl + 'refresh/token', { headers: headers })
+        return this._httpClient.get(this._baseUrl + '/refresh/token', { headers: headers })
             .pipe(map((data) => {
                 this._updateCookies(data);
                 return true;
@@ -155,7 +155,7 @@ export class ApiService {
      * @param data 
      */
     private _updateCookies(data): void {
-        this._cookieService.put('accessToken', data.token);
+        this._cookieService.put('token', data.token);
         this._cookieService.put('refreshToken', data.refreshToken);
     }
 

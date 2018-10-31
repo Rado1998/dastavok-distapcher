@@ -4,7 +4,16 @@ export interface RequestParams {
     responseType?
 }
 
+export interface ServerResponse<T> {
+    message: T;
+}
+
 export interface LoginResponse {
     token: string,
     refreshToken: string
+}
+
+export interface MenuItem {
+    label: string,
+    routerLink: string
 }

@@ -8,6 +8,6 @@ export class LoginService {
     constructor(private _apiService: ApiService) { }
 
     public userLogin(username: string, password: string): Observable<object> {
-        return this._apiService.post('', { username: username, password: password })
+        return this._apiService.post('/login', { Username: username, Password: password })
     }
 }

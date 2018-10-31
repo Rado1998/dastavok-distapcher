@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { httpParams } from './com/annaniks/dastavok-dispatcher/params';
-import { ApiService } from './com/annaniks/dastavok-dispatcher/services/api.service';
+import { ApiService } from './com/annaniks/dastavok-dispatcher/services';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'angular2-cookie';
 import { AuthGuard } from './com/annaniks/dastavok-dispatcher/guards';

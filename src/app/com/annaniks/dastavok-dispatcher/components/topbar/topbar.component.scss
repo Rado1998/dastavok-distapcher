@@ -1,0 +1,39 @@
+.topbar_content {
+    background-color: rebeccapurple;
+    .container {
+        margin: 0 10px;
+        .logo {
+            img {
+                width: 130px;
+                height: 60px;
+            }
+        }
+        .user_info {
+            position: relative;
+            .image {
+                width: 45px;
+                height: 45px;
+                background-color: red;
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                -ms-border-radius: 50%;
+                -o-border-radius: 50%;
+            }
+            .user_profile {
+                margin-left: 10px;
+                i {
+                    cursor: pointer;
+                }
+                .more_info {
+                    position: absolute;
+                    width: 130px;
+                    height: 150px;
+                    background-color: red;
+                    top: 50px;
+                    right: 10px;
+                }
+            }
+        }
+    }
+}

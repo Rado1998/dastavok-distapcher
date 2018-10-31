@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LoginService } from './login.service';
-import { LoginResponse } from '../../models';
+import { LoginResponse, ServerResponse } from '../../models';
 import { CookieService } from 'angular2-cookie';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'login-view',
@@ -14,7 +15,11 @@ export class LoginView implements OnInit, OnDestroy {
     private _subscription: Subscription = new Subscription();
     public loginForm: FormGroup;
 
-    constructor(private _loginService: LoginService, private _cookieService: CookieService, private _fb: FormBuilder) { }
+    constructor(
+        private _loginService: LoginService,
+        private _cookieService: CookieService,
+        private _fb: FormBuilder,
+        private _router: Router) { }
 
     ngOnInit() {
         this._formBuilder();
@@ -22,8 +27,8 @@ export class LoginView implements OnInit, OnDestroy {
 
     private _formBuilder(): void {
         this.loginForm = this._fb.group({
-            username: [null, Validators.required],
-            password: [null, Validators.required]
+            username: ['dispatcher@mail.ru', Validators.required],
+            password: ['dispatcher', Validators.required]
         })
     }
 
@@ -32,8 +37,9 @@ export class LoginView implements OnInit, OnDestroy {
             this._subscription = this._loginService.userLogin(
                 this.loginForm.get('username').value,
                 this.loginForm.get('password').value)
-                .subscribe((response: LoginResponse) => {
-                    this._setCookie(response.token, response.refreshToken);
+                .subscribe((response: ServerResponse<LoginResponse>) => {
+                    this._setCookie(response.message.token, response.message.refreshToken);
+                    this._router.navigate(['/dashboard'])
                 })
         }
     }
@@ -46,5 +52,5 @@ export class LoginView implements OnInit, OnDestroy {
     ngOnDestroy() {
         this._subscription.unsubscribe();
     }
-    
+
 }

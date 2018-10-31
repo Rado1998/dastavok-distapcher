@@ -1,0 +1,35 @@
+.slide_nav_content {
+    width: 230px;
+    position: absolute;
+    left: 0;
+    top: 65px;
+    bottom: 0;
+    background-color: #efefef;
+    .container {
+        .menu_items {
+            margin-top: 150px;
+            .item {
+                cursor: pointer;
+                margin: 0 10px;
+                padding: 5px 0;
+                border-bottom: 1px solid grey;
+                .icon {
+                    color: black;
+                    user-select: none;
+                }
+                &:hover {
+                    background-color: white;
+                    transition: background-color 0.5s;
+                    -webkit-transition: background-color 0.5s;
+                    -moz-transition: background-color 0.5s;
+                    -ms-transition: background-color 0.5s;
+                    -o-transition: background-color 0.5s;
+                }
+            }
+        }
+    }
+}
+
+.active_route {
+    background-color: white;
+}
