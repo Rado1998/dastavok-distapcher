@@ -19,7 +19,10 @@ export class TopbarComponent implements OnInit {
     }
 
     public onClickMoreInfo(): void {
-        this.moreInfoVisible = !this.moreInfoVisible;
+        setTimeout(() => {
+            this.moreInfoVisible = !this.moreInfoVisible;
+        }, 1)
+
     }
 
     public onClickedOutside(): void {

@@ -8,9 +8,16 @@
             </div>
             <div class="user_profile" display-flex align-items-center>
                 <span color-white>{{userInfo.firstName}} {{userInfo.lastName}}</span>
-                <i class="material-icons" (click)="onClickMoreInfo()" (clickOutside)="onClickedOutside($event)">expand_more</i>
-                <div class="more_info" *ngIf="moreInfoVisible">
-
+                <i class="material-icons more_icon" (click)="onClickMoreInfo()">expand_more</i>
+                <div class="more_info" *ngIf="moreInfoVisible" (clickOutside)="onClickedOutside($event)">
+                    <div class="item" display-flex justify-content-space-beetwen>
+                        <span>Profile</span>
+                        <i class="material-icons">account_box</i>
+                    </div>
+                    <div class="item" display-flex justify-content-space-beetwen>
+                        <span>Log Out</span>
+                        <i class="material-icons">exit_to_app</i>
+                    </div>
                 </div>
             </div>
         </div>

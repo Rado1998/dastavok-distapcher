@@ -28,17 +28,42 @@
             .user_profile {
                 margin-left: 10px;
                 font-size: 15px;
-                i {
+                .more_icon {
                     margin-left: 10px;
                     cursor: pointer;
                 }
                 .more_info {
                     position: absolute;
-                    width: 130px;
-                    height: 150px;
-                    background-color: red;
+                    background-color: #444444;
+                    width: 200px;
+                    height: 155px;
+                    z-index: 1;
                     top: 50px;
                     right: 10px;
+                    .item {
+                        padding: 10px 0;
+                        span {
+                            margin-left: 10px;
+                            font-size: 20px;
+                            color: white;
+                        }
+                        i {
+                            margin-right: 10px;
+                            color: white;
+                        }
+                        &:hover {
+                            cursor: pointer;
+                            background-color: white;
+                            transition: background-color 0.5s;
+                            span {
+                                color: #444444;
+                                transition: color 0.5s;
+                            }
+                            i {
+                                color: #444444;
+                            }
+                        }
+                    }
                 }
             }
         }
