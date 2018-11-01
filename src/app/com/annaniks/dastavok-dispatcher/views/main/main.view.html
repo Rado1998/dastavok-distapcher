@@ -1,9 +1,12 @@
 <div class="page_content">
     <div class="top_content">
-        <app-topbar></app-topbar>
+        <app-topbar [userInfo]="userInfo"></app-topbar>
     </div>
     <div class="bottom_content" [ngClass]="{'menuOpen':menuItemsService.getMenuOpen(),'menuClose':!menuItemsService.getMenuOpen()}">
-        <router-outlet></router-outlet>
+        <app-slide-nav></app-slide-nav>
+        <div class="page_routing">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-    <app-slide-nav></app-slide-nav>
+
 </div>

@@ -1,7 +1,10 @@
 .topbar_content {
-    background-color: rebeccapurple;
+    background-color: #444444;
+    height: 70px;
     .container {
-        margin: 0 10px;
+        width: 85%;
+        margin: 0 auto;
+        height: 100%;
         .logo {
             img {
                 width: 130px;
@@ -11,9 +14,11 @@
         .user_info {
             position: relative;
             .image {
-                width: 45px;
-                height: 45px;
-                background-color: red;
+                width: 36px;
+                height: 36px;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
                 border-radius: 50%;
                 -webkit-border-radius: 50%;
                 -moz-border-radius: 50%;
@@ -22,7 +27,9 @@
             }
             .user_profile {
                 margin-left: 10px;
+                font-size: 15px;
                 i {
+                    margin-left: 10px;
                     cursor: pointer;
                 }
                 .more_info {

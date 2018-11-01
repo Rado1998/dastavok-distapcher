@@ -4,7 +4,7 @@ import { CookieService } from 'angular2-cookie/core';
 import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { of, Observable } from 'rxjs';
-import { RequestParams } from '../models';
+import { RequestParams } from '../models/models';
 
 
 @Injectable()
@@ -23,7 +23,7 @@ export class ApiService {
      * @param observe - httpOption for get full response,not required
      * @param responseType - httpOption for get full response on type text
      */
-    public get(url: string, observe?, responseType?): Observable<Object> {
+    public get(url: string, observe?, responseType?): Observable<Object | any> {
         let token = this._cookieService.get('token') || '';
         let headers = new HttpHeaders({
             'Content-type': 'application/json',
@@ -46,7 +46,7 @@ export class ApiService {
      * @param observe - httpOption for get full response
      * @param responseType 
      */
-    public post(url: string, body: object, observe?, responseType?): Observable<Object> {
+    public post(url: string, body: object, observe?, responseType?): Observable<Object | any> {
         let token = this._cookieService.get('token') || '';
         let headers = new HttpHeaders({
             'Content-type': 'application/json',
@@ -61,7 +61,7 @@ export class ApiService {
         return this._httpClient.post(this._baseUrl + url, body, params);
     }
 
-    public postFormData(url: string, formData: FormData, observe?, responseType?): Observable<Object> {
+    public postFormData(url: string, formData: FormData, observe?, responseType?): Observable<Object | any> {
         let token = this._cookieService.get('token') || '';
         let headers = new HttpHeaders({
             'token': token,
@@ -82,7 +82,7 @@ export class ApiService {
      * @param observe 
      * @param responseType 
      */
-    public put(url: string, body: object, observe?, responseType?): Observable<Object> {
+    public put(url: string, body: object, observe?, responseType?): Observable<Object | any> {
         let token = this._cookieService.get('token') || '';
         let headers = new HttpHeaders({
             'Content-type': 'application/json',
@@ -103,7 +103,7 @@ export class ApiService {
      * @param observe 
      * @param responseType 
      */
-    public delete(url: string, observe?, responseType?): Observable<Object> {
+    public delete(url: string, observe?, responseType?): Observable<Object | any> {
         let token = this._cookieService.get('token') || '';
         let headers = new HttpHeaders({
             'Content-type': 'application/json',

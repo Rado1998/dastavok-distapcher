@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LoginService } from './login.service';
-import { LoginResponse, ServerResponse } from '../../models';
+import { LoginResponse, ServerResponse } from '../../models/models';
 import { CookieService } from 'angular2-cookie';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MenuItemsService } from '../../services';
+import { User } from '../../models/models';
 
 @Component({
     selector: 'app-topbar',
@@ -8,6 +9,7 @@ import { MenuItemsService } from '../../services';
 })
 export class TopbarComponent implements OnInit {
     public moreInfoVisible: boolean = false;
+    @Input() public userInfo: User = {} as User;
     constructor(private _menuItemService: MenuItemsService) { }
 
     ngOnInit() { }
@@ -22,5 +24,14 @@ export class TopbarComponent implements OnInit {
 
     public onClickedOutside(): void {
         this.moreInfoVisible = false;
+    }
+
+    public setUserAvatar(): object {
+        let styles = { 'background-image': 'url(/assets/images/avatar.png' };
+
+        if (this.userInfo.imagePath)
+            styles = { 'background-image': 'url(' + this.userInfo.imagePath + ')' }
+
+        return styles;
     }
 }

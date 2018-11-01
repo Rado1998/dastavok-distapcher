@@ -2,7 +2,7 @@
     text-align: center;
 }
 
-*[cursor-pointer]{
+*[cursor-pointer] {
     cursor: pointer;
 }
 
@@ -65,4 +65,8 @@
 *[error] {
     color: red;
     font-weight: bold;
+}
+
+[color-white] {
+    color: white;
 }

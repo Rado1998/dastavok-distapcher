@@ -4,10 +4,10 @@
             <img src="/assets/images/LOGO.png" />
         </div>
         <div class="user_info" display-flex align-items-center>
-            <div class="image">
+            <div class="image" [ngStyle]="setUserAvatar()">
             </div>
             <div class="user_profile" display-flex align-items-center>
-                <span>Valod Valodyan</span>
+                <span color-white>{{userInfo.firstName}} {{userInfo.lastName}}</span>
                 <i class="material-icons" (click)="onClickMoreInfo()" (clickOutside)="onClickedOutside($event)">expand_more</i>
                 <div class="more_info" *ngIf="moreInfoVisible">
 

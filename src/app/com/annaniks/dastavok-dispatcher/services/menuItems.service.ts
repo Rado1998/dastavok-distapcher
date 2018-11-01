@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { MenuItem } from '../models';
+import { MenuItem } from '../models/models';
 
 const MENUITEMS: Array<MenuItem> = [
     { label: 'Dashboard', routerLink: '/dashboard' },
     { label: 'Statistics', routerLink: '/statistics' },
+    { label: 'Live Map', routerLink: '/live-map' },
     { label: 'New Orders', routerLink: '/new-orders' },
     { label: 'Accepted Orders', routerLink: '/accepted-orders' },
     { label: 'Delieved Orders', routerLink: '/delieved-orders' }

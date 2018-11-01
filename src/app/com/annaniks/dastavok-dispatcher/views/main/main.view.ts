@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MenuItemsService } from '../../services/menuItems.service';
+import { MainService } from './main.service';
+import { User } from '../../models/models';
 
 @Component({
     selector: 'main-view',
@@ -7,10 +9,18 @@ import { MenuItemsService } from '../../services/menuItems.service';
     styleUrls: ['main.view.scss']
 })
 export class MainView implements OnInit, OnDestroy {
+    public userInfo: User = new User();
+    constructor(public menuItemsService: MenuItemsService, private _mainService: MainService) { }
 
-    constructor(public menuItemsService: MenuItemsService) { }
+    ngOnInit() {
+        this._getUser();
+    }
 
-    ngOnInit() { }
+    private _getUser(): void {
+        this._mainService.getUser().subscribe((data: User) => {
+            this.userInfo = data;
+        })
+    }
 
     ngOnDestroy() { }
 }

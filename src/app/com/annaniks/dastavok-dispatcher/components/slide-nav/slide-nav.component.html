@@ -1,10 +1,9 @@
 <div class="slide_nav_content">
     <div class="container">
         <div class="menu_items">
-            <div class="item" display-flex align-items-center justify-content-space-beetwen routerLinkActive="active_route"
-                [routerLink]="item.routerLink" *ngFor="let item of menuItemsService.getMenuItems()">
+            <div class="item" display-flex align-items-center j routerLinkActive="active_route" [routerLink]="item.routerLink"
+                *ngFor="let item of menuItemsService.getMenuItems()">
                 <span>{{item.label}}</span>
-                <i class="material-icons icon">keyboard_arrow_right</i>
             </div>
         </div>
     </div>
