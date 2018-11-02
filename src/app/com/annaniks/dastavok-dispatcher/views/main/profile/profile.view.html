@@ -1,0 +1,38 @@
+<div class="user_profile">
+    <div class="content">
+        <div class="user_form">
+            <form [formGroup]="profileForm">
+                <div class="submit_sm" display-flex>
+                    <div class="content" margin-left-auto>
+                        <input type="submit" value="Edit" (click)="onClickEdit()">
+                    </div>
+                </div>
+                <div class="form_group">
+                    <div class="image_upload">
+                        <div class="image" [ngStyle]="setUserImage()"></div>
+                        <input type="file" formControlName="imagePath" (change)="changeFile($event)">
+                    </div>
+                </div>
+                <div class="form_group">
+                    <label for="firstname">First name</label>
+                    <input type='text' placeholder="First name" formControlName="firstName" />
+                </div>
+                <div class="form_group">
+                    <label for="lastname">Last name</label>
+                    <input type='text' placeholder="Last name" formControlName="lastName" />
+                </div>
+                <div class="form_group">
+                    <label for="phoneNumber">Phone number</label>
+                    <input type='text' placeholder="Phone number" formControlName="phoneNumber" />
+                </div>
+                <div class="form_group">
+                    <label for="email">Email</label>
+                    <input type='text' placeholder="Email" formControlName="email" />
+                </div>
+                <div class="submit" *ngIf="profileForm.enabled">
+                    <input type="submit" value="Save" (click)="onClickSave()">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

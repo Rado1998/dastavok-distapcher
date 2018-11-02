@@ -8,9 +8,9 @@
             </div>
             <div class="user_profile" display-flex align-items-center>
                 <span color-white>{{userInfo.firstName}} {{userInfo.lastName}}</span>
-                <i class="material-icons more_icon" (click)="onClickMoreInfo()">expand_more</i>
-                <div class="more_info" *ngIf="moreInfoVisible" (clickOutside)="onClickedOutside($event)">
-                    <div class="item" display-flex justify-content-space-beetwen>
+                <i class="material-icons more_icon" (click)="onClickMoreInfo()" (clickOutside)="onClickedOutside($event)">expand_more</i>
+                <div class="more_info" *ngIf="moreInfoVisible">
+                    <div class="item" display-flex justify-content-space-beetwen routerLink="/profile">
                         <span>Profile</span>
                         <i class="material-icons">account_box</i>
                     </div>

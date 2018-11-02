@@ -1,0 +1,64 @@
+.user_profile {
+    .content {
+        .user_form {
+            max-width: 800px;
+            margin: 0 auto;
+            .form_group {
+                width: 100%;
+                .image_upload {
+                    margin: 0 auto;
+                    width: 50%;
+                    .image {
+                        height: 150px;
+                        background-image: url('/assets/images/avatar.png');
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                }
+                .label {}
+                input[type=text] {
+                    width: 100%;
+                    padding: 12px 20px;
+                    margin: 8px 0;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                }
+            }
+            .submit {
+                input[type=submit] {
+                    width: 300px;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 14px 20px;
+                    margin: 8px 0;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    &:hover {
+                        background-color: #45a049;
+                        transition: background-color 0.5s;
+                    }
+                }
+            }
+            .submit_sm{
+                input[type=submit] {
+                    width: 150px;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 6px 20px;
+                    margin: 8px 0;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    &:hover {
+                        background-color: #45a049;
+                        transition: background-color 0.5s;
+                    }
+                }
+            }
+        }
+    }
+}
