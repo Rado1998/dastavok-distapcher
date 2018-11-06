@@ -1,18 +1,21 @@
 .container {
     height: 100vh;
+    width: 100%;
+    background-color: #444444;
+    display: flex;
     .login_form {
         max-width: 545px;
+        min-width: 545px;
+        height: fit-content;
         margin: auto;
         min-height: 400px;
         background-color: white;
         box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
-        border-radius: 37px;
+        display: flex;
         .content {
             width: 70%;
-            margin: 0 auto;
-            .header {
-                margin: 37px 0px;
-            }
+            margin: auto;
+            .header {}
             h1 {
                 font-family: 'Open Sans';
                 font-weight: 100;
@@ -20,12 +23,11 @@
             }
             input[type=submit] {
                 width: 154px;
-                background-color: rgba(255, 89, 90, 1);
+                background-color: #87bd3c;
                 color: white;
                 padding: 14px 20px;
                 margin: 8px 0;
                 border: none;
-                border-radius: 5px;
                 cursor: pointer;
             }
             .form_group {
@@ -40,8 +42,7 @@
                     width: 100%;
                     padding: 8px 20px;
                     margin: 4px 0;
-                    border: 2px solid rgba(255, 89, 90, 1);
-                    border-radius: 4px;
+                    border: 1px solid #707070;
                     box-sizing: border-box;
                 }
             }

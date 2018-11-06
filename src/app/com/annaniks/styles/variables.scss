@@ -75,10 +75,25 @@
     font-weight: bold;
 }
 
+*[error-center] {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 !important;
+}
+
 *[color-white] {
     color: white;
 }
 
 *[float-right] {
     float: right;
+}
+
+*[float-left] {
+    float: left
+}
+
+*[position-relative] {
+    position: relative;
 }

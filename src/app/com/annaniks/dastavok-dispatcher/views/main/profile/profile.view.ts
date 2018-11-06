@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { MainService } from '../main.service';
-import { User } from '../../../models/models';
-import { Subscription } from 'rxjs';
+import { User, ServerResponse } from '../../../models/models';
+import { Subscription, Observable, forkJoin } from 'rxjs';
 import { ProfileService } from './profile.service';
+import { FileValidator } from '../../../validators/file.validator';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 
 @Component({
@@ -16,6 +18,9 @@ export class ProfileView implements OnInit, OnDestroy {
     private _changeSubscription: Subscription = new Subscription();
     private _userInfo: User = new User();
     private _editable: boolean = false;
+    private _userImage: Event;
+    public serverMessage: string;
+    public loading: boolean = false;
     public profileForm: FormGroup;
     public localImage: string = '/assets/images/avatar.png';
 
@@ -24,7 +29,8 @@ export class ProfileView implements OnInit, OnDestroy {
         private _mainService: MainService,
         private _profileService: ProfileService,
         private _fb: FormBuilder,
-        @Inject('BASE_URL') private _baseUrl: string
+        @Inject('BASE_URL') private _baseUrl: string,
+        private _messageService: MessageService
     ) { }
 
     ngOnInit() {
@@ -38,9 +44,12 @@ export class ProfileView implements OnInit, OnDestroy {
             lastName: [null, Validators.required],
             phoneNumber: [null, Validators.required],
             email: [null, Validators.required],
-            imagePath: [null, Validators.required]
+            imagePath: [null, FileValidator.validate]
         })
         this.profileForm.disable();
+
+
+
     }
 
     private _getUser(): void {
@@ -53,6 +62,9 @@ export class ProfileView implements OnInit, OnDestroy {
                 email: this._userInfo.email,
                 imagePath: this._userInfo.imagePath
             })
+            if (this._userInfo.imagePath)
+                this.localImage = `${this._baseUrl}/static/${this._userInfo.imagePath}`;
+
         })
     }
 
@@ -65,9 +77,33 @@ export class ProfileView implements OnInit, OnDestroy {
     }
 
     private _changeUser(): void {
-        this._changeSubscription = this._profileService.changeUser(this.profileForm.value).subscribe((response) => {
-            console.log(response);
-        })
+        if (this.profileForm.valid && !this.loading) {
+            this.loading = true;
+            let _joinObservables: Array<Observable<object>> = [];
+            _joinObservables.push(this._updateUser(this.profileForm.value))
+            if (this._userImage) {
+                _joinObservables.push(this._updateUserImage());
+            }
+            this._changeSubscription = forkJoin(_joinObservables).subscribe(
+                () => {
+                    this._setMessage('success', 'Server Message', 'Profile Changed Successfully');
+                    this.loading = false;
+                },
+                (error) => {
+                    this._setMessage('error', 'Server Message', 'Profile Change Failed');
+                    this.serverMessage = error;
+                    this.loading = false;
+                })
+        }
+    }
+
+    private _updateUser(changedInfo: User): Observable<ServerResponse<string>> {
+        delete changedInfo.imagePath;
+        return this._profileService.changeUser(changedInfo);
+    }
+
+    private _updateUserImage(): Observable<ServerResponse<string>> {
+        return this._profileService.changeUserImage(this._userImage)
     }
 
     public onClickEdit(): void {
@@ -76,7 +112,8 @@ export class ProfileView implements OnInit, OnDestroy {
 
     public changeFile(event): void {
         if (event) {
-            let reader = new FileReader()
+            this._userImage = event;
+            let reader = new FileReader();
             reader.onload = (e: any) => {
                 this.localImage = e.target.result;
             };
@@ -94,10 +131,11 @@ export class ProfileView implements OnInit, OnDestroy {
         let styles = {
             'background-image': `url(${this.localImage})`
         }
-        if (this._userInfo.imagePath)
-            styles["background-image"] = `${this._baseUrl}/static/${this._userInfo.imagePath}`;
         return styles;
+    }
 
+    private _setMessage(serverity?, summary?, detail?): void {
+        this._messageService.add({ severity: serverity, summary: summary, detail: detail })
     }
 
 

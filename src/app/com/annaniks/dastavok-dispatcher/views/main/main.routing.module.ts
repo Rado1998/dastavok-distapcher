@@ -8,8 +8,8 @@ let mainRoutes: Routes = [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', loadChildren: 'src/app/com/annaniks/dastavok-dispatcher/views/main/dashboard/dashboard.module#DashboardModule' },
             { path: 'profile', loadChildren: 'src/app/com/annaniks/dastavok-dispatcher/views/main/profile/profile.module#ProfileModule' },
-            { path: 'live-map', loadChildren: 'src/app/com/annaniks/dastavok-dispatcher/views/main/live-map/live-map.module#LiveMapModule' }
-
+            { path: 'live-map', loadChildren: 'src/app/com/annaniks/dastavok-dispatcher/views/main/live-map/live-map.module#LiveMapModule' },
+            { path: 'orders/:orderStatus', loadChildren: 'src/app/com/annaniks/dastavok-dispatcher/views/main/orders/orders.module#OrdersModule' }
         ]
     }
 ]

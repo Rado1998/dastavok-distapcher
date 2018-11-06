@@ -2,7 +2,8 @@
     background-color: #444444;
     height: 70px;
     .container {
-        width: 1200px;
+        max-width: 1200px;
+        min-width: 900px;
         margin: 0 auto;
         height: 100%;
         .logo {
@@ -38,7 +39,7 @@
                     width: 200px;
                     height: 155px;
                     z-index: 1;
-                    top: 50px;
+                    top: 34px;
                     right: 10px;
                     .item {
                         padding: 10px 0;
@@ -68,4 +69,17 @@
             }
         }
     }
+}
+
+.open {
+    opacity: 1;
+    top: 50px !important;
+    transition: all 0.5s;
+}
+
+.hide {
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+    user-select: none;
 }

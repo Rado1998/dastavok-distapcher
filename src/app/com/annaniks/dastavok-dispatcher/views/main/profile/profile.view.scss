@@ -43,7 +43,7 @@
                     }
                 }
             }
-            .submit_sm{
+            .submit_sm {
                 input[type=submit] {
                     width: 150px;
                     background-color: #4CAF50;
@@ -61,4 +61,12 @@
             }
         }
     }
+}
+
+.invalid {
+    opacity: 0.5 !important;
+}
+
+.valid {
+    opacity: 1 !important;
 }

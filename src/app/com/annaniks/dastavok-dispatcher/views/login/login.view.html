@@ -4,19 +4,15 @@
             <div class="login_form">
                 <div class="content">
                     <h3 error text-align-center *ngIf="error">{{error}}</h3>
-                    <div class="header">
-                        <h1 text-align-center no-margin>Вход в систему</h1>
-                    </div>
                     <form [formGroup]="loginForm">
                         <div class="form_group">
-                            <label for="username">Username</label>
+                            <i class="material-icons">user</i>
                             <input type="text" formControlName="username" id="Username" name="Username" placeholder="">
                             <span error *ngIf="loginForm.get('username').hasError('required') && loginForm.get('username').touched">
                                 Username: Это обязательное поле
                             </span>
                         </div>
                         <div class="form_group">
-                            <label for="password">Password</label>
                             <input type="password" id="password" formControlName="password" name="lastname" placeholder="">
                             <span error *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
                                 Password: Это обязательное поле
@@ -24,7 +20,7 @@
                         </div>
                         <div class="button" width-fit margin-auto>
                             <input type="submit" [disabled]="loginForm.invalid" [ngClass]="{'valid':loginForm.valid,'inValid':loginForm.invalid}"
-                                value="Войти" (click)="onClickLogin()">
+                                value="LOGIN" (click)="onClickLogin()">
                         </div>
                     </form>
                 </div>

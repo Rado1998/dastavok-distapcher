@@ -1,6 +1,7 @@
 <div class="user_profile">
     <div class="content">
-        <div class="user_form">
+        <div class="user_form" position-relative>
+            <p error-center *ngIf="serverMessage">{{serverMessage}}</p>
             <form [formGroup]="profileForm">
                 <div class="submit_sm" display-flex>
                     <div class="content" margin-left-auto>
@@ -10,7 +11,7 @@
                 <div class="form_group">
                     <div class="image_upload">
                         <div class="image" [ngStyle]="setUserImage()"></div>
-                        <input type="file" formControlName="imagePath" (change)="changeFile($event)">
+                        <input type="file" formControlName="imagePath" (change)="changeFile($event)" *ngIf="profileForm.enabled">
                     </div>
                 </div>
                 <div class="form_group">
@@ -30,9 +31,11 @@
                     <input type='text' placeholder="Email" formControlName="email" />
                 </div>
                 <div class="submit" *ngIf="profileForm.enabled">
-                    <input type="submit" value="Save" (click)="onClickSave()">
+                    <input type="submit" value="Save" [disabled]='loading' [ngClass]="{'invalid':profileForm.invalid || loading,'valid':profileForm.valid && !loading}"
+                        (click)="onClickSave()">
                 </div>
             </form>
+            <app-loading [visiblity]="loading"></app-loading>
         </div>
     </div>
 </div>

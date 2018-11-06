@@ -5,9 +5,9 @@ const MENUITEMS: Array<MenuItem> = [
     { label: 'Dashboard', routerLink: '/dashboard' },
     { label: 'Statistics', routerLink: '/statistics' },
     { label: 'Live Map', routerLink: '/live-map' },
-    { label: 'New Orders', routerLink: '/new-orders' },
-    { label: 'Accepted Orders', routerLink: '/accepted-orders' },
-    { label: 'Delieved Orders', routerLink: '/delieved-orders' }
+    { label: 'New Orders', routerLink: '/orders/new' },
+    { label: 'Seen Orders', routerLink: '/orders/seen' },
+    { label: 'Rejected Orders', routerLink: '/orders/rejected' }
 ]
 
 @Injectable()
