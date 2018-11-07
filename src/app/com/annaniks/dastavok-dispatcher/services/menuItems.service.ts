@@ -7,7 +7,9 @@ const MENUITEMS: Array<MenuItem> = [
     { label: 'Live Map', routerLink: '/live-map' },
     { label: 'New Orders', routerLink: '/orders/new' },
     { label: 'Seen Orders', routerLink: '/orders/seen' },
-    { label: 'Rejected Orders', routerLink: '/orders/rejected' }
+    { label: 'Rejected Orders', routerLink: '/orders/rejected' },
+    { label: 'Completed Orders', routerLink: '/orders/completed' },
+    { label: 'In Proccess Orders', routerLink: '/orders/in-process' }
 ]
 
 @Injectable()
