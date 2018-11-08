@@ -1,0 +1,46 @@
+.orders_list_item {
+    padding: 20px 0;
+    border-bottom: 2px solid #c8c8c8;
+    .content {
+        display: flex;
+        align-items: center;
+        position: relative;
+        ;
+        .order_image {
+            width: 193px;
+            height: 127px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url('/assets/images/avatar.png');
+        }
+        .order_info {
+            margin-left: 50px;
+            max-width: 400px;
+            .name {
+                font-weight: 600;
+            }
+        }
+        .order_price {
+            width: calc(100% - 593px);
+            margin-left: 50px;
+            .price {
+                font-size: 25px;
+                word-break: break-word;
+                text-align: center;
+                min-width: max-content;
+            }
+        }
+        .more_info_button {
+            input[type=submit] {
+                width: 154px;
+                background-color: #87bd3c;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -1,0 +1,6 @@
+<div class="list_content">
+    <ng-content></ng-content>
+    <div class="paginator" *ngIf="paginatorVisiblity">
+        <app-paginator [count]="count"></app-paginator>
+    </div>
+</div>

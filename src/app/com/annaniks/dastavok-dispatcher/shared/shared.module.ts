@@ -3,9 +3,10 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { MaterialModule } from './material.module';
 import { LoadingComponent } from '../components';
 import { CommonModule } from '@angular/common';
+import { PaginatorComponent } from '../components/paginator/paginator.component';
 @NgModule({
-    declarations: [LoadingComponent],
+    declarations: [LoadingComponent, PaginatorComponent],
     imports: [ClickOutsideModule, MaterialModule, CommonModule],
-    exports: [ClickOutsideModule, LoadingComponent]
+    exports: [ClickOutsideModule, LoadingComponent, PaginatorComponent]
 })
 export class SharedModule { }
