@@ -11,4 +11,8 @@ export class OrdersService {
     public getOrders(status: string, page: number, limit: number): Observable<ServerResponse<Paginator<Array<Order>>>> {
         return this._apiService.get(`/order/status/${status}/${page}/${limit}`)
     }
+
+    public getOrder(orderId: number): Observable<ServerResponse<Order>> {
+        return this._apiService.get(`/order/good/${orderId}`)
+    }
 }

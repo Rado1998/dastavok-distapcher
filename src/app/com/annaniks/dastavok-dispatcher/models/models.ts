@@ -59,7 +59,8 @@ export interface BriefOrder {
 }
 
 export interface OrderParams {
-    orderStatus: string
+    orderStatus: string,
+    orderId?
 }
 
 export interface Paginator<T> {
@@ -69,14 +70,16 @@ export interface Paginator<T> {
 }
 
 export interface Order {
-    address: string;
+    client: object;
     clientId: number;
+    company: object;
     companyId: number;
     createdAt: string;
-    dispatcherId: string;
+    dispatcherId: number;
     driverId: number;
     driverToClientDate: string;
     driverToRestaurantDate: string;
+    goods: Array<Good>
     id: number;
     name: string;
     orderCompleteDate: string;
@@ -84,6 +87,7 @@ export interface Order {
     status: string;
     totalAmount: number;
     updatedAt: string;
+
 }
 
 export interface Company {

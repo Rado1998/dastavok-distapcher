@@ -4,7 +4,7 @@ import { OrdersView } from './orders.view';
 
 let ordersRoutes: Routes = [
     { path: '', component: OrdersView },
-    { path: ':id', loadChildren: 'src/app/com/annaniks/dastavok-dispatcher/views/main/orders/order/order.module#OrderModule' },
+    { path: ':orderId', loadChildren: 'src/app/com/annaniks/dastavok-dispatcher/views/main/orders/order/order.module#OrderModule' },
 ]
 
 @NgModule({

@@ -6,13 +6,18 @@
                     <h3 error text-align-center *ngIf="error">{{error}}</h3>
                     <form [formGroup]="loginForm">
                         <div class="form_group">
-                            <i class="material-icons">user</i>
+                            <div class="icon">
+                                <i class="material-icons">person</i>
+                            </div>
                             <input type="text" formControlName="username" id="Username" name="Username" placeholder="">
                             <span error *ngIf="loginForm.get('username').hasError('required') && loginForm.get('username').touched">
                                 Username: Это обязательное поле
                             </span>
                         </div>
                         <div class="form_group">
+                            <div class="icon">
+                                <i class="material-icons">vpn_key</i>
+                            </div>
                             <input type="password" id="password" formControlName="password" name="lastname" placeholder="">
                             <span error *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
                                 Password: Это обязательное поле
