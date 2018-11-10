@@ -8,7 +8,10 @@
         cursor: pointer;
         user-select: none;
     }
-    i{
+    i {
         user-select: none;
+    }
+    .active_page {
+        color: #87bd3c;
     }
 }

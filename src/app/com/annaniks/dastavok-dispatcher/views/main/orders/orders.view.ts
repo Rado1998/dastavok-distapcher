@@ -9,7 +9,10 @@ import { OrderParams, ServerResponse, Paginator, Order } from '../../../models/m
     styleUrls: ['orders.view.scss']
 })
 export class OrdersView implements OnInit, OnDestroy {
+    private _orderStatus: string;
     public orders: Array<Order> = [];
+    public ordersCount: number = 0;
+    public pageLength: number = 10;
     constructor(private _activatedRoute: ActivatedRoute, private _ordersService: OrdersService) {
         this._checkOrderStatus();
     }
@@ -18,15 +21,28 @@ export class OrdersView implements OnInit, OnDestroy {
 
     private _checkOrderStatus(): void {
         this._activatedRoute.params.subscribe((params: OrderParams) => {
-            this._getOrders(params.orderStatus, 1, 10);
+            this._resetProperties();
+            this._orderStatus = params.orderStatus;
+            this._getOrders(params.orderStatus, 1, this.pageLength);
         })
     }
 
     private _getOrders(status: string, page: number, limit: number): void {
         this._ordersService.getOrders(status, page, limit).subscribe((response: ServerResponse<Paginator<Array<Order>>>) => {
+            this.ordersCount = response.message.count;
             this.orders = response.message.result;
-            console.log(this.orders);
         })
+    }
+
+    public paginate($event): void {
+        this._getOrders(this._orderStatus, $event.pageNumber, this.pageLength);
+    }
+
+    private _resetProperties(): void {
+        this._orderStatus = undefined;
+        this.orders = [];
+        this.ordersCount = 0;
+        this.pageLength = 10;
     }
 
     ngOnDestroy() { }

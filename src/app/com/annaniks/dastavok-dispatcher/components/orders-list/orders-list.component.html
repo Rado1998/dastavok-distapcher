@@ -1,6 +1,7 @@
-<div class="list_content">
+<div class="list_content" position-relative>
     <ng-content></ng-content>
     <div class="paginator" *ngIf="paginatorVisiblity">
-        <app-paginator [count]="count"></app-paginator>
+        <app-paginator [count]="count" [pageLength]="pageLength" (paginate)="paginate($event)"></app-paginator>
     </div>
+    <app-loading [visiblity]="loading"></app-loading>
 </div>
