@@ -1,8 +1,8 @@
 <div class="orders_list_item">
     <div class="content">
-        <div class="order_image"></div>
+        <div class="order_image" [ngStyle]="setCompanyImage()"></div>
         <div class="order_info">
-            <p class="name">Tsezar</p>
+            <p class="name">{{orderInfo?.company?.companyname}}</p>
             <p class="description">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias rem laudantium accusantium
                 temporibus iste unde natus veniam nobis quaerat reiciendis necessitatibus harum maiores sapiente, hic
@@ -10,7 +10,7 @@
             </p>
         </div>
         <div class="order_price">
-            <p class="price">{{orderInfo.totalAmount}} ₽</p>
+            <p class="price">{{orderInfo?.totalAmount}} ₽</p>
         </div>
         <div class="more_info_button">
             <input type="submit" value="More" (click)="onClickMore()">

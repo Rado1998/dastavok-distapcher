@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, Inject } from '@angular/core';
 import { BriefOrder } from '../../../models/models';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class OrdersListItemComponent implements OnInit, OnDestroy {
     @Input('orderInfo') public orderInfo: BriefOrder = {} as BriefOrder;
 
-    constructor(private _router: Router) { }
+    constructor(@Inject('BASE_URL') private _baseUrl: string, private _router: Router) { }
 
     ngOnInit() { }
 
@@ -20,6 +20,16 @@ export class OrdersListItemComponent implements OnInit, OnDestroy {
 
     private _navigateToDetails(): void {
         this._router.navigate([`/orders/${this.orderInfo.status}/${this.orderInfo.id}`])
+    }
+
+    public setCompanyImage(): object {
+        let styles = {
+            'background-image': 'url(/assets/images/avatar.png)'
+        }
+        if (this.orderInfo.company.companyimage) {
+            styles["background-image"] = `${this._baseUrl}/static/${this.orderInfo.company.companyimage}`
+        }
+        return styles;
     }
 
     ngOnDestroy() { }

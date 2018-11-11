@@ -99,7 +99,7 @@ export interface Company {
     description: string;
     email: string;
     id: number;
-    image: string;
+    companyimage: string;
     name: string;
     phoneNumber: string;
     updatedAt: string;
