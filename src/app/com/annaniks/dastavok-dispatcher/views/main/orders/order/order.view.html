@@ -1,0 +1,84 @@
+<div class="page">
+    <div class="container" display-flex>
+        <div class="order_images">
+            <div class="main_image" [ngStyle]="{'background-image':'url('+mainImage+')'}"></div>
+            <div class="images" display-flex flex-wrap-wrap>
+                <div class="img" (click)="onClickImage(image)" [ngStyle]="{'background-image':'url('+image+')'}" *ngFor="let image of images;let ind=index">
+
+                </div>
+            </div>
+        </div>
+        <div class="order_description">
+            <div class="order_details">
+                <div class="detail">
+                    <div class="detail_name">
+                        Company
+                    </div>
+                    <div class="detail_value">
+                        {{orderInfo?.company?.companyname}}
+                    </div>
+                </div>
+                <div class="detail">
+                    <div class="detail_name">
+
+                    </div>
+                    <div class="detail_value">
+
+                    </div>
+                </div>
+                <div class="detail">
+                    <div class="detail_name">
+
+                    </div>
+                    <div class="detail_value">
+
+                    </div>
+                </div>
+                <div class="detail">
+                    <div class="detail_name">
+
+                    </div>
+                    <div class="detail_value">
+
+                    </div>
+                </div>
+                <div class="detail">
+                    <div class="detail_name">
+
+                    </div>
+                    <div class="detail_value">
+
+                    </div>
+                </div>
+                <div class="detail">
+                    <div class="detail_name">
+
+                    </div>
+                    <div class="detail_value">
+
+                    </div>
+                </div>
+                <div class="detail">
+                    <div class="detail_name">
+
+                    </div>
+                    <div class="detail_value">
+
+                    </div>
+                </div>
+                <div class="detail">
+                    <div class="detail_name">
+
+                    </div>
+                    <div class="detail_value">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="google_map">
+        <div id="map"></div>
+    </div>
+</div>

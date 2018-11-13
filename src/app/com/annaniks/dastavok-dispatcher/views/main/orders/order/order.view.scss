@@ -1,0 +1,54 @@
+.page {
+    .container {
+        .order_images {
+            width: 350px;
+            height: 500px;
+            .main_image {
+                width: 100%;
+                height: 241px;
+                background-image: url('/assets/images/salad.jpg');
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.23);
+            }
+            .images {
+                margin-top: 28px;
+                justify-content: space-between;
+                .img {
+                    margin-top: 10px;
+                    width: 100px;
+                    height: 78px;
+                    border-radius: 4px;
+                    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.23);
+                    background-image: url('/assets/images/salad.jpg');
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    cursor: pointer;
+                }
+            }
+        }
+        .order_description {
+            width: calc(100% - 350px);
+            margin-left: 10px;
+            .order_details {
+                .detail {
+                    display: flex;
+                    align-items: center;
+                    .detail_name {
+                        margin-right: 20px;
+                    }
+                    .detail_value {}
+                }
+            }
+        }
+    }
+    .google_map {
+        margin-right: 8px;
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+    }
+}

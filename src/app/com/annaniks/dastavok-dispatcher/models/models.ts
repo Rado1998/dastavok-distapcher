@@ -34,9 +34,7 @@ export interface MenuItem {
     routerLink: string
 }
 
-export interface Order {
 
-}
 
 export interface BriefOrder {
     address: string;
