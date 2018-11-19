@@ -8,75 +8,108 @@
                 </div>
             </div>
         </div>
-        <div class="order_description">
+        <div class="order_description" position-relative>
             <div class="order_details">
-                <div class="detail">
-                    <div class="detail_name">
-                        Company
+                <div width-50 [ngStyle]="{'border-right':'2px solid rgba(185 185 185)'}">
+                    <div class="detail">
+                        <div class="detail_name">
+                            Company
+                        </div>
+                        <div class="detail_value">
+                            {{orderInfo?.company?.companyname}}
+                        </div>
                     </div>
-                    <div class="detail_value">
-                        {{orderInfo?.company?.companyname}}
+                    <div class="detail">
+                        <div class="detail_name">
+                            Phone
+                        </div>
+                        <div class="detail_value">
+                            {{orderInfo?.company?.companyphonenumber}}
+                        </div>
                     </div>
-                </div>
-                <div class="detail">
-                    <div class="detail_name">
-
+                    <div class="detail">
+                        <div class="detail_name">
+                            Type
+                        </div>
+                        <div class="detail_value">
+                            {{orderInfo?.company?.companytype}}
+                        </div>
                     </div>
-                    <div class="detail_value">
-
-                    </div>
-                </div>
-                <div class="detail">
-                    <div class="detail_name">
-
-                    </div>
-                    <div class="detail_value">
-
-                    </div>
-                </div>
-                <div class="detail">
-                    <div class="detail_name">
-
-                    </div>
-                    <div class="detail_value">
-
-                    </div>
-                </div>
-                <div class="detail">
-                    <div class="detail_name">
-
-                    </div>
-                    <div class="detail_value">
-
+                    <div class="detail">
+                        <div class="detail_name">
+                            Zip Code
+                        </div>
+                        <div class="detail_value">
+                            {{orderInfo?.company?.companyzipcode}}
+                        </div>
                     </div>
                 </div>
-                <div class="detail">
-                    <div class="detail_name">
-
+                <div width-50>
+                    <div class="detail">
+                        <div class="detail_name">
+                            Client
+                        </div>
+                        <div class="detail_value">
+                            {{orderInfo?.client?.fullName}}
+                        </div>
                     </div>
-                    <div class="detail_value">
-
+                    <div class="detail">
+                        <div class="detail_name">
+                            Phone
+                        </div>
+                        <div class="detail_value">
+                            {{orderInfo?.client?.phoneNumber}}
+                        </div>
                     </div>
-                </div>
-                <div class="detail">
-                    <div class="detail_name">
-
+                    <div class="detail">
+                        <div class="detail_name">
+                            Balance
+                        </div>
+                        <div class="detail_value">
+                            {{orderInfo?.client?.balance}}
+                        </div>
                     </div>
-                    <div class="detail_value">
-
-                    </div>
-                </div>
-                <div class="detail">
-                    <div class="detail_name">
-
-                    </div>
-                    <div class="detail_value">
-
+                    <div class="detail">
+                        <div class="detail_name">
+                            Buy Date
+                        </div>
+                        <div class="detail_value">
+                            {{orderInfo?.buyDate}}
+                        </div>
                     </div>
                 </div>
             </div>
+            <app-loading [visiblity]="loading"></app-loading>
         </div>
-
+    </div>
+    <div class="carousel">
+        <p-carousel headerText="Goods" [value]="goodsCarousel" *ngIf="goodsCarousel.length>0">
+            <ng-template let-good pTemplate="item">
+                <div class="ui-grid ui-grid-responsive item_container">
+                    <div class="ui-grid-row" text-align-center>
+                        <div class="ui-grid-col-12"><img margin-horizontal-auto src="assets/images/salad.jpg" width="60"
+                                height="60"></div>
+                    </div>
+                    <div class="ui-grid-row" text-align-center>
+                        <div class="ui-grid-col-6">Name</div>
+                        <div class="ui-grid-col-6">{{good.name}}</div>
+                    </div>
+                    <div class="ui-grid-row" text-align-center>
+                        <div class="ui-grid-col-6">Price</div>
+                        <div class="ui-grid-col-6">{{good.price}}</div>
+                    </div>
+                    <div class="ui-grid-row" text-align-center>
+                        <div class="ui-grid-col-6">Ready Time</div>
+                        <div class="ui-grid-col-6">{{good.readyTime}}</div>
+                    </div>
+                    <div class="ui-grid-row" text-align-center>
+                        <div class="ui-grid-col-12">
+                            <button type="button" margin-horizontal-auto pButton icon="pi pi-search" (click)="onClickGood(good)"></button>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
     </div>
     <div class="google_map">
         <div id="map"></div>

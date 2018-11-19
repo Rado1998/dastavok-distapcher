@@ -12,9 +12,7 @@ export class OrdersListItemComponent implements OnInit, OnDestroy {
 
     constructor(@Inject('BASE_URL') private _baseUrl: string, private _router: Router) { }
 
-    ngOnInit() {
-        console.log(this.orderInfo);
-    }
+    ngOnInit() {}
 
     public onClickMore(): void {
         this._navigateToDetails();

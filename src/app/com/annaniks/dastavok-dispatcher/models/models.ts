@@ -68,9 +68,12 @@ export interface Paginator<T> {
 }
 
 export interface Order {
-    client: object;
+    address: Address;
+    buyDate: string;
+    client: Client
     clientId: number;
-    company: object;
+    comment: string;
+    company: Company
     companyId: number;
     createdAt: string;
     dispatcherId: number;
@@ -82,6 +85,7 @@ export interface Order {
     name: string;
     orderCompleteDate: string;
     orderStartDate: string;
+    reviewId: number;
     status: string;
     totalAmount: number;
     updatedAt: string;
@@ -89,33 +93,55 @@ export interface Order {
 }
 
 export interface Company {
-    address: string;
-    code: number;
-    companyType: string;
-    confirmed: boolean;
-    createdAt: string;
-    description: string;
-    email: string;
-    id: number;
+    companyaddress: Address;
+    companydescription: string;
+    companyemail: string;
+    companyid: number;
     companyimage: string;
-    name: string;
-    phoneNumber: string;
-    updatedAt: string;
-    userName: string;
-    zipCode: number;
+    companyname: string;
+    companyphonenumber: string;
+    companytype: string;
+    companyusername: string;
+    companyzipcode: number
 }
 
 export interface Good {
+    companyId: number;
     createdAt: string;
     description: string;
     goodTypeId: number;
+    goodtypename: string;
     id: number;
     images: string;
     isDeal: boolean;
     name: string;
     price: number;
-    readTime: number;
+    readyTime: number;
     thumbnail: string;
     unitId: number;
+    unitsname: string;
+    unitssympol: string;
     updatedAt: string;
+}
+
+export interface CarouselItem {
+    image: string;
+    name: string;
+    price: number;
+    readyTime: number;
+}
+
+interface Address {
+    lat: number,
+    lng: number,
+    text: string;
+}
+
+interface Client {
+    address: Array<Address>;
+    balance: number;
+    fullName: string;
+    id: number;
+    phoneNumber: string;
+    userName: string;
 }
