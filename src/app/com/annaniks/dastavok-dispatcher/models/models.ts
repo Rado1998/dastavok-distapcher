@@ -67,7 +67,7 @@ export interface Paginator<T> {
     result: T
 }
 
-export interface Order {
+export class Order {
     address: Address;
     buyDate: string;
     client: Client
@@ -89,6 +89,30 @@ export interface Order {
     status: string;
     totalAmount: number;
     updatedAt: string;
+
+    constructor() {
+        this.address = {} as Address;
+        this.buyDate = '';
+        this.client = {} as Client;
+        this.clientId = 0;
+        this.comment = '';
+        this.company = {} as Company;
+        this.companyId = 0;
+        this.createdAt = '';
+        this.dispatcherId = 0;
+        this.driverId = 0;
+        this.driverToClientDate = '';
+        this.driverToRestaurantDate = '';
+        this.goods = [];
+        this.id = 0;
+        this.name = '';
+        this.orderCompleteDate = '';
+        this.orderStartDate = '';
+        this.reviewId = 0;
+        this.status = '';
+        this.totalAmount = 0;
+        this.updatedAt = '';
+    }
 
 }
 
@@ -144,4 +168,8 @@ interface Client {
     id: number;
     phoneNumber: string;
     userName: string;
+}
+
+export interface Confirm {
+    confirm: boolean;
 }

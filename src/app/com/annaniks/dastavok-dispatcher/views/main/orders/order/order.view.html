@@ -1,4 +1,4 @@
-<div class="page">
+<div class="page" position-relative>
     <div class="container" display-flex>
         <div class="order_images">
             <div class="main_image" [ngStyle]="{'background-image':'url('+mainImage+')'}"></div>
@@ -9,6 +9,9 @@
             </div>
         </div>
         <div class="order_description" position-relative>
+            <div class="settings" display-flex *ngIf="orderInfo.status!='new'">
+                <button class="delete" (click)="onClickDelete()" [disabled]="!orderInfo">Delete</button>
+            </div>
             <div class="order_details">
                 <div width-50 [ngStyle]="{'border-right':'2px solid rgba(185 185 185)'}">
                     <div class="detail">
@@ -79,6 +82,8 @@
                     </div>
                 </div>
             </div>
+            <button class="take" *ngIf="orderInfo.status=='new'" (click)="onClickTake()" [disabled]="!orderInfo">TAKE</button>
+            <button class="take" *ngIf="orderInfo.status=='seen'" (click)="onClickSetDriver()" [disabled]="!orderInfo">SET DRIVER</button>
             <app-loading [visiblity]="loading"></app-loading>
         </div>
     </div>
@@ -114,4 +119,5 @@
     <div class="google_map">
         <div id="map"></div>
     </div>
+    <app-loading [visiblity]="loading"></app-loading>
 </div>

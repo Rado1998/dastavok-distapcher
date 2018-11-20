@@ -2,27 +2,29 @@ import { NgModule } from '@angular/core';
 import { OrderView } from './order.view';
 import { OrderRoutingModule } from './order.routing.module';
 import { CommonModule } from '@angular/common';
-import { ButtonModule, CarouselModule } from 'primeng/primeng';
 import { MatDialogModule } from '@angular/material';
-import { GoodDetailsModal } from '../../../../modals';
-import { SharedModule } from '../../../../shared';
+import { GoodDetailsModal, SetDriverModal } from '../../../../modals';
+import { SharedModule, MaterialModule } from '../../../../shared';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
         OrderView,
-        GoodDetailsModal
+        GoodDetailsModal,
+        SetDriverModal
     ],
     imports: [
         OrderRoutingModule,
         CommonModule,
-        CarouselModule,
-        ButtonModule,
         MatDialogModule,
-        SharedModule
+        SharedModule,
+        MaterialModule,
+        ReactiveFormsModule
     ],
     providers: [],
     entryComponents:[
-        GoodDetailsModal
+        GoodDetailsModal,
+        SetDriverModal
     ]
 })
 export class OrderModule { }

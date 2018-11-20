@@ -50,6 +50,35 @@
                     }
                 }
             }
+            .settings{
+                .delete{
+                    background-color: #dc3545;
+                    width: 124px;
+                    color: white;
+                    padding: 7px 20px;
+                    margin: 8px 0 8px auto;
+                    border: none;
+                    cursor: pointer;
+                }
+            }
+
+            .take{
+                position: absolute;
+                bottom:0;
+                right: 0.5em;
+                background-color: #87bd3c;
+                width: 154px;
+                color: white;
+                padding: 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                font-size: 20px;
+                &:hover{
+                    background-color: #6a9430;
+                    transition: background-color 0.5s;
+                }
+            }
         }
     }
 
@@ -73,3 +102,10 @@
 *[width-50]{
     width: 50%;
 }
+
+
+
+
+    
+
+   

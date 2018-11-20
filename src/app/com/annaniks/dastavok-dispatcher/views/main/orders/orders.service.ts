@@ -15,4 +15,12 @@ export class OrdersService {
     public getOrder(orderId: number): Observable<ServerResponse<Order>> {
         return this._apiService.get(`/order/good/${orderId}`)
     }
+
+    public deleteOrder(orderId: number): Observable<ServerResponse<any>> {
+        return this._apiService.delete(`/order/${orderId}`);
+    }
+
+    public changeOrderStatus(status: string, orderId: number, body = {}): Observable<ServerResponse<string>> {
+        return this._apiService.put(`/order/status/${status}/${orderId}`, body);
+    }
 }
