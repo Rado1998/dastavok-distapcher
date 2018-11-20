@@ -51,6 +51,7 @@
                 }
             }
             .settings{
+                padding:0.5em;
                 .delete{
                     background-color: #dc3545;
                     width: 124px;
@@ -79,6 +80,14 @@
                     transition: background-color 0.5s;
                 }
             }
+
+            .change{
+                background-color: #ffc107;
+                &:hover{
+                    background-color: #ca9803;
+                    transition: background-color 0.5s;
+                }
+            }
         }
     }
 
@@ -102,6 +111,11 @@
 *[width-50]{
     width: 50%;
 }
+
+:host::ng-deep .mat-dialog-container{
+    overflow: inherit !important;
+}
+
 
 
 

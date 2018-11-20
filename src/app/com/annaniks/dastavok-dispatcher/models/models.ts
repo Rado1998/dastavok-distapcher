@@ -173,3 +173,17 @@ interface Client {
 export interface Confirm {
     confirm: boolean;
 }
+
+export interface Driver{
+    id:number;
+    firstName:string;
+    lastName:string;
+}
+
+export interface DelieveDetailsData{
+    orderId?;
+    driverId?;
+    driverToRestaurantDate?;
+    driverToClientDate?;
+    change:boolean;
+}

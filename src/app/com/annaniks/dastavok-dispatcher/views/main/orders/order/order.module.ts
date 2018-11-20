@@ -3,7 +3,7 @@ import { OrderView } from './order.view';
 import { OrderRoutingModule } from './order.routing.module';
 import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material';
-import { GoodDetailsModal, SetDriverModal } from '../../../../modals';
+import { GoodDetailsModal, DelieveDetailsModal } from '../../../../modals';
 import { SharedModule, MaterialModule } from '../../../../shared';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     declarations: [
         OrderView,
         GoodDetailsModal,
-        SetDriverModal
+        DelieveDetailsModal
     ],
     imports: [
         OrderRoutingModule,
@@ -24,7 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     providers: [],
     entryComponents:[
         GoodDetailsModal,
-        SetDriverModal
+        DelieveDetailsModal
     ]
 })
 export class OrderModule { }

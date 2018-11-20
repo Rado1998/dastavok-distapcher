@@ -84,6 +84,7 @@
             </div>
             <button class="take" *ngIf="orderInfo.status=='new'" (click)="onClickTake()" [disabled]="!orderInfo">TAKE</button>
             <button class="take" *ngIf="orderInfo.status=='seen'" (click)="onClickSetDriver()" [disabled]="!orderInfo">SET DRIVER</button>
+            <button class="take change" *ngIf="orderInfo.status=='start'" (click)="onClickChange()" [disabled]="!orderInfo">Change</button>
             <app-loading [visiblity]="loading"></app-loading>
         </div>
     </div>

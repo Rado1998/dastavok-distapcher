@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OrderParams, ServerResponse, Order, CarouselItem, Good, Confirm } from '../../../../models/models';
+import { OrderParams, ServerResponse, Order, CarouselItem, Good, DelieveDetailsData } from '../../../../models/models';
 import { OrdersService } from '../orders.service';
-import { GoodDetailsModal, SetDriverModal } from '../../../../modals';
+import { GoodDetailsModal, DelieveDetailsModal } from '../../../../modals';
 import { MatDialog } from '@angular/material';
 import { AppService } from '../../../../services';
 import { Subscription } from 'rxjs';
@@ -45,6 +45,15 @@ export class OrderView implements OnInit, OnDestroy {
         this._initMap();
     }
 
+    
+    private _initMap(): void {
+        this.map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8
+        });
+
+    }
+
     private _checkOrderId(): void {
         this._activatedRoute.params.subscribe((params: OrderParams) => {
             this._orderStatus = params.orderStatus;
@@ -60,23 +69,6 @@ export class OrderView implements OnInit, OnDestroy {
         })
     }
 
-
-    public onClickImage(imageUrl: string): void {
-        this._setMainImage(imageUrl);
-    }
-
-    private _setMainImage(image: string): void {
-        this.mainImage = image;
-    }
-
-    private _initMap(): void {
-        this.map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: -34.397, lng: 150.644 },
-            zoom: 8
-        });
-
-    }
-
     private _setCarouselImages(goods: Array<Good>): void {
         this.goodsCarousel = [];
         goods.forEach((element: Good) => {
@@ -90,10 +82,18 @@ export class OrderView implements OnInit, OnDestroy {
         })
     }
 
+   
+    public onClickImage(imageUrl: string): void {
+        this._setMainImage(imageUrl);
+    }
+
+    private _setMainImage(image: string): void {
+        this.mainImage = image;
+    }
+
     public onClickGood(good: Good): void {
         //this._openGoodDetailModal(good);
     }
-
 
     private _openGoodDetailModal(good: Good): void {
         let dialogRef = this._matDialog.open(GoodDetailsModal, {
@@ -107,14 +107,6 @@ export class OrderView implements OnInit, OnDestroy {
         this._openConfirmModal(this._deleteOrder, this.orderInfo.id);
     }
 
-    private _openConfirmModal(callBack, ...args: any[]): void {
-        this._appService.openConfirmModal().subscribe((data: boolean) => {
-            if (data) {
-                callBack(args);
-            }
-        })
-    }
-
     private _deleteOrder = (orderId: number): void => {
         this.loading = true;
         this._deleteSubscription = this._ordersService.deleteOrder(orderId).subscribe((data) => {
@@ -122,9 +114,17 @@ export class OrderView implements OnInit, OnDestroy {
             this._router.navigate([`/orders/${this._orderStatus}`]);
         })
     }
-
+    
     public onClickTake(): void {
         this._openConfirmModal(this._takeOrder, this.orderInfo.id);
+    }
+    
+    private _openConfirmModal(callBack, ...args: any[]): void {
+        this._appService.openConfirmModal().subscribe((data: boolean) => {
+            if (data) {
+                callBack(args);
+            }
+        })
     }
 
     private _takeOrder = (orderId: number): void => {
@@ -136,17 +136,35 @@ export class OrderView implements OnInit, OnDestroy {
     }
 
     public onClickSetDriver(): void {
-        this._openSetDriverModal()
+        let data:DelieveDetailsData = {
+            orderId:this.orderInfo.id,
+            change:false
+        }
+        this._openSetDriverModal(data);
     }
 
-    private _openSetDriverModal(): void {
-        let dialogRef = this._matDialog.open(SetDriverModal, {
+    private _openSetDriverModal(data:DelieveDetailsData): void {
+        let dialogRef = this._matDialog.open(DelieveDetailsModal, {
             width: '450px',
-            height: '350px'
+            height: '350px',
+            data:data
         })
         dialogRef.afterClosed().subscribe((data) => {
-            console.log(data);
+            if(data && data.changed){
+                this._router.navigate([`/orders/onway/${this.orderInfo.id}`])
+            }
         })
+    }
+
+    public onClickChange():void {
+        let data:DelieveDetailsData = {
+            change:true,
+            orderId:this.orderInfo.id,
+            driverId:this.orderInfo.driverId,
+            driverToRestaurantDate:this.orderInfo.driverToRestaurantDate,
+            driverToClientDate:this.orderInfo.driverToClientDate,
+        }
+        this._openSetDriverModal(data);
     }
 
 
