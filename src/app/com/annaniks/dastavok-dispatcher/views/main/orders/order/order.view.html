@@ -1,124 +1,166 @@
-<div class="page" position-relative>
-    <div class="container" display-flex>
-        <div class="order_images">
-            <div class="main_image" [ngStyle]="{'background-image':'url('+mainImage+')'}"></div>
-            <div class="images" display-flex flex-wrap-wrap>
-                <div class="img" (click)="onClickImage(image)" [ngStyle]="{'background-image':'url('+image+')'}" *ngFor="let image of images;let ind=index">
-
+<div class="page">
+    <div error *ngIf="statusError">Order not found</div>
+    <div position-relative>
+        <div class="container" display-flex>
+            <div class="order_images" position-relative>
+                <div class="main_image" [ngStyle]="{'background-image':'url('+mainImage+')'}"></div>
+                <div class="images" display-flex flex-wrap-wrap>
+                    <div class="img" (click)="onClickImage(image)" [ngStyle]="{'background-image':'url('+image+')'}"
+                        *ngFor="let image of images;let ind=index">
+                    </div>
                 </div>
+                <app-loading [visiblity]="loading"></app-loading>
+            </div>
+            <div class="order_description" position-relative>
+                <div class="status">
+                    {{orderInfo.status}}
+                </div>
+                <div class="settings" display-flex *ngIf="orderInfo.status=='seen'">
+                    <button class="delete" (click)="onClickDelete()" [disabled]="!orderInfo">Delete</button>
+                </div>
+                <div class="order_details">
+                    <div width-50 [ngStyle]="{'border-right':'2px solid rgba(185 185 185)'}">
+                        <div class="detail">
+                            <div class="detail_name">
+                                Company
+                            </div>
+                            <div class="detail_value">
+                                {{orderInfo?.company?.companyname}}
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Phone
+                            </div>
+                            <div class="detail_value">
+                                {{orderInfo?.company?.companyphonenumber}}
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Type
+                            </div>
+                            <div class="detail_value">
+                                {{orderInfo?.company?.companytype}}
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Zip Code
+                            </div>
+                            <div class="detail_value">
+                                {{orderInfo?.company?.companyzipcode}}
+                            </div>
+                        </div>
+                    </div>
+                    <div width-50>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Client
+                            </div>
+                            <div class="detail_value">
+                                {{orderInfo?.client?.fullName}}
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Phone
+                            </div>
+                            <div class="detail_value">
+                                {{orderInfo?.client?.phoneNumber}}
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Balance
+                            </div>
+                            <div class="detail_value">
+                                {{orderInfo?.client?.balance}}
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Buy Date
+                            </div>
+                            <div class="detail_value">
+                                {{orderInfo?.buyDate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="take" *ngIf="orderInfo.status=='new'" (click)="onClickTake()" [disabled]="!orderInfo">TAKE</button>
+                <button class="take" *ngIf="orderInfo.status=='seen'" (click)="onClickSetDriver()" [disabled]="!orderInfo">SET
+                    DRIVER</button>
+                <button class="take change" *ngIf="orderInfo.status=='start'" (click)="onClickChange()" [disabled]="!orderInfo">Change</button>
+                <app-loading [visiblity]="loading"></app-loading>
             </div>
         </div>
-        <div class="order_description" position-relative>
-            <div class="settings" display-flex *ngIf="orderInfo.status!='new'">
-                <button class="delete" (click)="onClickDelete()" [disabled]="!orderInfo">Delete</button>
-            </div>
-            <div class="order_details">
-                <div width-50 [ngStyle]="{'border-right':'2px solid rgba(185 185 185)'}">
-                    <div class="detail">
-                        <div class="detail_name">
-                            Company
-                        </div>
-                        <div class="detail_value">
-                            {{orderInfo?.company?.companyname}}
-                        </div>
-                    </div>
-                    <div class="detail">
-                        <div class="detail_name">
-                            Phone
-                        </div>
-                        <div class="detail_value">
-                            {{orderInfo?.company?.companyphonenumber}}
-                        </div>
-                    </div>
-                    <div class="detail">
-                        <div class="detail_name">
-                            Type
-                        </div>
-                        <div class="detail_value">
-                            {{orderInfo?.company?.companytype}}
-                        </div>
-                    </div>
-                    <div class="detail">
-                        <div class="detail_name">
-                            Zip Code
-                        </div>
-                        <div class="detail_value">
-                            {{orderInfo?.company?.companyzipcode}}
-                        </div>
+        <div class="status_bar" *ngIf="orderInfo.status=='start'" position-relative>
+            <div class="steps">
+
+                <div class="status">
+                    <span>Start</span>
+                    <div class="circle">
+                        <div class="active_status" *ngIf="orderInfo?.status==='start'"></div>
                     </div>
                 </div>
-                <div width-50>
-                    <div class="detail">
-                        <div class="detail_name">
-                            Client
-                        </div>
-                        <div class="detail_value">
-                            {{orderInfo?.client?.fullName}}
-                        </div>
+                <div class="status">
+                    <span>Accepted</span>
+                    <div class="circle" margin-horizontal-auto>
+                        <div class="active_status" *ngIf="orderInfo?.status==='accepted'"></div>
                     </div>
-                    <div class="detail">
-                        <div class="detail_name">
-                            Phone
-                        </div>
-                        <div class="detail_value">
-                            {{orderInfo?.client?.phoneNumber}}
-                        </div>
+                </div>
+                <div class="status">
+                    <span>On Way</span>
+                    <div class="circle" margin-horizontal-auto>
+                        <div class="active_status" *ngIf="orderInfo?.status==='onway'"></div>
                     </div>
-                    <div class="detail">
-                        <div class="detail_name">
-                            Balance
-                        </div>
-                        <div class="detail_value">
-                            {{orderInfo?.client?.balance}}
-                        </div>
-                    </div>
-                    <div class="detail">
-                        <div class="detail_name">
-                            Buy Date
-                        </div>
-                        <div class="detail_value">
-                            {{orderInfo?.buyDate}}
-                        </div>
+                </div>
+                <div class="status">
+                    <span>Completed</span>
+                    <div class="circle"  margin-left-auto>
+                        <div class="active_status" *ngIf="orderInfo?.status==='completed'"></div>
                     </div>
                 </div>
             </div>
-            <button class="take" *ngIf="orderInfo.status=='new'" (click)="onClickTake()" [disabled]="!orderInfo">TAKE</button>
-            <button class="take" *ngIf="orderInfo.status=='seen'" (click)="onClickSetDriver()" [disabled]="!orderInfo">SET DRIVER</button>
-            <button class="take change" *ngIf="orderInfo.status=='start'" (click)="onClickChange()" [disabled]="!orderInfo">Change</button>
+            <div class="line"></div>
+            <!-- <app-loading [visiblity]="loading"></app-loading> -->
+        </div>
+        <div class="carousel" position-relative>
+            <p-carousel headerText="Goods" [value]="goodsCarousel" *ngIf="goodsCarousel.length>0">
+                <ng-template let-good pTemplate="item">
+                    <div class="ui-grid ui-grid-responsive item_container">
+                        <div class="ui-grid-row" text-align-center>
+                            <div class="ui-grid-col-12"><img margin-horizontal-auto src="assets/images/salad.jpg" width="60"
+                                    height="60"></div>
+                        </div>
+                        <div class="ui-grid-row" text-align-center>
+                            <div class="ui-grid-col-6">Name</div>
+                            <div class="ui-grid-col-6">{{good.name}}</div>
+                        </div>
+                        <div class="ui-grid-row" text-align-center>
+                            <div class="ui-grid-col-6">Price</div>
+                            <div class="ui-grid-col-6">{{good.price}}</div>
+                        </div>
+                        <div class="ui-grid-row" text-align-center>
+                            <div class="ui-grid-col-6">Ready Time</div>
+                            <div class="ui-grid-col-6">{{good.readyTime}}</div>
+                        </div>
+                        <div class="ui-grid-row" text-align-center>
+                            <div class="ui-grid-col-12">
+                                <button type="button" margin-horizontal-auto pButton icon="pi pi-search" (click)="onClickGood(good)"></button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
             <app-loading [visiblity]="loading"></app-loading>
         </div>
+        <div class="google_map" position-relative>
+            <div id="map"></div>
+            <app-loading [visiblity]="drivers.length==0 && loading"></app-loading>
+        </div>
+
     </div>
-    <div class="carousel">
-        <p-carousel headerText="Goods" [value]="goodsCarousel" *ngIf="goodsCarousel.length>0">
-            <ng-template let-good pTemplate="item">
-                <div class="ui-grid ui-grid-responsive item_container">
-                    <div class="ui-grid-row" text-align-center>
-                        <div class="ui-grid-col-12"><img margin-horizontal-auto src="assets/images/salad.jpg" width="60"
-                                height="60"></div>
-                    </div>
-                    <div class="ui-grid-row" text-align-center>
-                        <div class="ui-grid-col-6">Name</div>
-                        <div class="ui-grid-col-6">{{good.name}}</div>
-                    </div>
-                    <div class="ui-grid-row" text-align-center>
-                        <div class="ui-grid-col-6">Price</div>
-                        <div class="ui-grid-col-6">{{good.price}}</div>
-                    </div>
-                    <div class="ui-grid-row" text-align-center>
-                        <div class="ui-grid-col-6">Ready Time</div>
-                        <div class="ui-grid-col-6">{{good.readyTime}}</div>
-                    </div>
-                    <div class="ui-grid-row" text-align-center>
-                        <div class="ui-grid-col-12">
-                            <button type="button" margin-horizontal-auto pButton icon="pi pi-search" (click)="onClickGood(good)"></button>
-                        </div>
-                    </div>
-                </div>
-            </ng-template>
-        </p-carousel>
-    </div>
-    <div class="google_map">
-        <div id="map"></div>
-    </div>
-    <app-loading [visiblity]="loading"></app-loading>
+
 </div>

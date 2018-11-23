@@ -10,6 +10,7 @@ import { OrderParams, ServerResponse, Paginator, Order } from '../../../models/m
 })
 export class OrdersView implements OnInit, OnDestroy {
     private _orderStatus: string;
+    public loading:boolean = false;
     public orders: Array<Order> = [];
     public ordersCount: number = 0;
     public pageLength: number = 10;
@@ -28,9 +29,11 @@ export class OrdersView implements OnInit, OnDestroy {
     }
 
     private _getOrders(status: string, page: number, limit: number): void {
+        this.loading = true;
         this._ordersService.getOrders(status, page, limit).subscribe((response: ServerResponse<Paginator<Array<Order>>>) => {
             this.ordersCount = response.message.count;
             this.orders = response.message.result;
+            this.loading = false;
         })
     }
 

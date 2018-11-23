@@ -4,7 +4,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OrdersService } from '../../views/main/orders/orders.service';
 import { Subscription } from 'rxjs';
 import { ServerResponse, Driver, DelieveDetailsData } from '../../models/models';
-import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'delieve-details',
@@ -23,7 +22,7 @@ export class DelieveDetailsModal implements OnInit, OnDestroy {
         private dialogRef: MatDialogRef<DelieveDetailsModal>,
         private _fb: FormBuilder,
         private _orderService: OrdersService,
-        ) { }
+    ) { }
 
     ngOnInit() {
         this._formBuilder();
@@ -56,17 +55,26 @@ export class DelieveDetailsModal implements OnInit, OnDestroy {
     private _getDrivers(): void {
         this._orderService.getDrivers().subscribe((data: ServerResponse<Array<Driver>>) => {
             this.drivers = data.message;
+            this.drivers.forEach((element:Driver,index:number)=>{
+                element.fullName=`${element.firstName} ${element.lastName}`;
+            })
             this._checkDetails();
         })
     }
 
     public onClickSave(): void {
-        if (this.driverForm.valid && !this.data.change) {
-            this._setDriver();
+        if (this.driverForm.valid) {
+            if (!this.data.change) {
+                this._setDelieveDetails();
+            }
+            else {
+                this._changeDelieveDetails();
+            }
         }
+
     }
 
-    private _setDriver(): void {
+    private _setDelieveDetails(): void {
         this.loading = true;
         this._orderService.changeOrderStatus('start', this.data.orderId, {
             driverId: this.driverForm.get('driver').value.id,
@@ -78,6 +86,28 @@ export class DelieveDetailsModal implements OnInit, OnDestroy {
                 this.dialogRef.close({
                     changed: true
                 });
+            },
+            (error) => {
+                this.error = error.error.message;
+                this.loading = false;
+            })
+    }
+
+    private _changeDelieveDetails(): void {
+        this.loading = true;
+        this._orderService.changeDelieveDatils(this.data.orderId, {
+            driverId: this.driverForm.get('driver').value.id,
+            driverToRestaurantDate: this.driverForm.get('restaurtantDate').value,
+            driverToClientDate: this.driverForm.get('clientDate').value
+        }).subscribe(
+            (data: ServerResponse<string>) => {
+                this.loading = false;
+                this.dialogRef.close({
+                    changed: true,
+                    driverId: this.driverForm.get('driver').value.id,
+                    driverToRestaurantDate: this.driverForm.get('restaurtantDate').value,
+                    driverToClientDate: this.driverForm.get('clientDate').value
+                })
             },
             (error) => {
                 this.error = error.error.message;

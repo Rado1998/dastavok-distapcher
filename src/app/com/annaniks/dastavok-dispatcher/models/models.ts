@@ -178,6 +178,8 @@ export interface Driver{
     id:number;
     firstName:string;
     lastName:string;
+    fullName?
+    coordinate:Coordinate
 }
 
 export interface DelieveDetailsData{
@@ -186,4 +188,9 @@ export interface DelieveDetailsData{
     driverToRestaurantDate?;
     driverToClientDate?;
     change:boolean;
+}
+
+interface Coordinate{
+    lat:number;
+    lng:number;
 }

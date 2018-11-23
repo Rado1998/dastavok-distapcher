@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OrderParams, ServerResponse, Order, CarouselItem, Good, DelieveDetailsData } from '../../../../models/models';
+import { OrderParams, ServerResponse, Order, CarouselItem, Good, DelieveDetailsData, Driver } from '../../../../models/models';
 import { OrdersService } from '../orders.service';
 import { GoodDetailsModal, DelieveDetailsModal } from '../../../../modals';
 import { MatDialog } from '@angular/material';
 import { AppService } from '../../../../services';
-import { Subscription } from 'rxjs';
+import { Subscription, forkJoin, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 declare var google: any;
 
@@ -21,7 +22,10 @@ export class OrderView implements OnInit, OnDestroy {
     public orderInfo: Order = new Order();
     public map;
     public loading: boolean = true;
+    public drivers: Array<Driver> = [];
     public mainImage: string;
+    public error: string;
+    public statusError: boolean = false;
     public images: Array<string> = [
         '/assets/images/salad.jpg',
         '/assets/images/salad1.jpg',
@@ -45,28 +49,52 @@ export class OrderView implements OnInit, OnDestroy {
         this._initMap();
     }
 
-    
+
     private _initMap(): void {
         this.map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: -34.397, lng: 150.644 },
+            center: { lat: 40.2222035, lng:45.239139 },
             zoom: 8
         });
 
+        // google.maps.event.addListener(this.map, 'click', (event) => {
+        //     this._addMarker(event.latLng);
+        // });
+
+    }
+
+    private _addMarker(coordinates): void {
+        var marker = new google.maps.Marker({
+            position: coordinates,
+            map: this.map
+        });
     }
 
     private _checkOrderId(): void {
         this._activatedRoute.params.subscribe((params: OrderParams) => {
             this._orderStatus = params.orderStatus;
-            this._getOrder(params.orderId);
+            const combined = forkJoin(
+                this._getOrder(params.orderId),
+                this._getDrivers()
+            )
+            this._orderSubscirption = combined.subscribe(()=>{
+                this.loading = false;
+            })
         })
     }
 
-    private _getOrder(orderId: number): void {
-        this._orderSubscirption = this._ordersService.getOrder(orderId).subscribe((data: ServerResponse<Order>) => {
-            this.orderInfo = data.message;
-            this.loading = false;
-            this._setCarouselImages(data.message.goods);
-        })
+    private _getOrder(orderId: number): Observable<void> {
+        return this._ordersService.getOrder(orderId).pipe(
+            map(((data: ServerResponse<Order>) => {
+                let status = data.message.status;
+                if (status === this._orderStatus || ((status === 'start' || status === 'onway' || status === 'accepted') && this._orderStatus === 'inprocess')) {
+                    this.orderInfo = data.message;
+                    this.loading = false;
+                    this._setCarouselImages(data.message.goods);
+                }
+                else {
+                    this.statusError = true;
+                }
+            })))
     }
 
     private _setCarouselImages(goods: Array<Good>): void {
@@ -82,7 +110,7 @@ export class OrderView implements OnInit, OnDestroy {
         })
     }
 
-   
+
     public onClickImage(imageUrl: string): void {
         this._setMainImage(imageUrl);
     }
@@ -114,11 +142,11 @@ export class OrderView implements OnInit, OnDestroy {
             this._router.navigate([`/orders/${this._orderStatus}`]);
         })
     }
-    
+
     public onClickTake(): void {
         this._openConfirmModal(this._takeOrder, this.orderInfo.id);
     }
-    
+
     private _openConfirmModal(callBack, ...args: any[]): void {
         this._appService.openConfirmModal().subscribe((data: boolean) => {
             if (data) {
@@ -136,37 +164,54 @@ export class OrderView implements OnInit, OnDestroy {
     }
 
     public onClickSetDriver(): void {
-        let data:DelieveDetailsData = {
-            orderId:this.orderInfo.id,
-            change:false
+        let data: DelieveDetailsData = {
+            orderId: this.orderInfo.id,
+            change: false
         }
         this._openSetDriverModal(data);
     }
 
-    private _openSetDriverModal(data:DelieveDetailsData): void {
+    private _openSetDriverModal(delieveData: DelieveDetailsData): void {
         let dialogRef = this._matDialog.open(DelieveDetailsModal, {
             width: '450px',
             height: '350px',
-            data:data
+            data: delieveData
         })
         dialogRef.afterClosed().subscribe((data) => {
-            if(data && data.changed){
-                this._router.navigate([`/orders/onway/${this.orderInfo.id}`])
+            if (data && data.changed) {
+                if (!delieveData.change) {
+                    this._router.navigate([`/orders/inprocess/${this.orderInfo.id}`]);
+                }
+                else {
+                    this.orderInfo.driverId = data.driverId;
+                    this.orderInfo.driverToClientDate = data.driverToClientDate;
+                    this.orderInfo.driverToRestaurantDate = data.driverToRestaurantDate;
+                }
             }
         })
     }
 
-    public onClickChange():void {
-        let data:DelieveDetailsData = {
-            change:true,
-            orderId:this.orderInfo.id,
-            driverId:this.orderInfo.driverId,
-            driverToRestaurantDate:this.orderInfo.driverToRestaurantDate,
-            driverToClientDate:this.orderInfo.driverToClientDate,
+    public onClickChange(): void {
+        let data: DelieveDetailsData = {
+            change: true,
+            orderId: this.orderInfo.id,
+            driverId: this.orderInfo.driverId,
+            driverToRestaurantDate: this.orderInfo.driverToRestaurantDate,
+            driverToClientDate: this.orderInfo.driverToClientDate,
         }
         this._openSetDriverModal(data);
     }
 
+    private _getDrivers(): Observable<void> {
+        return this._ordersService.getDrivers().pipe(
+            map((data: ServerResponse<Array<Driver>>) => {
+                this.drivers = data.message;
+                this.drivers.forEach((element:Driver,index:number)=>{
+                    this._addMarker(element.coordinate);
+                })
+            })
+        )
+    }
 
     ngOnDestroy() {
         this._orderSubscirption.unsubscribe();

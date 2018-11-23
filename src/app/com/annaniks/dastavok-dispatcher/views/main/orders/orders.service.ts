@@ -27,4 +27,8 @@ export class OrdersService {
     public getDrivers():Observable<ServerResponse<Array<Driver>>> {
         return this._apiService.get(`/driver`);
     }
+
+    public changeDelieveDatils(id:number,body):Observable<ServerResponse<string>>{
+        return this._apiService.put(`/order/status/delieve/status/${id}`,body)
+    }
 }

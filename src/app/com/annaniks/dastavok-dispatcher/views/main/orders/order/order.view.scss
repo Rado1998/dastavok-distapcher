@@ -1,6 +1,5 @@
 .page {
     .container {
-        margin-bottom: 50px;
         .order_images {
             width: 350px;
             .main_image {
@@ -62,6 +61,22 @@
                     cursor: pointer;
                 }
             }
+            .status{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #22b100;
+                width: 154px;
+                text-transform: uppercase;
+                color: white;
+                margin: 8px 0;
+                padding: 20px; 
+                border: none;
+                cursor: pointer;
+                position: absolute;
+                bottom:0;
+                left: 0.5em;
+            }
 
             .take{
                 position: absolute;
@@ -91,8 +106,40 @@
         }
     }
 
+    .status_bar{
+        margin-top:50px;
+        .steps{
+            display: flex;
+            justify-content: space-between;
+                .status{
+                    .circle{
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+                    background-color: #87bd3c;
+                    border:2px solid #87bd3c;
+                    display: flex;
+
+                    .active_status{
+                        width: 17.5px;
+                        height: 17.5px;;
+                        background-color: #ffc107;
+                        border-radius: 50%;
+                        margin:auto;
+                    }
+                }
+            }
+        }
+        .line{
+            width: 100%;
+            margin-top: -17.5px;
+            height: 2px;
+            background-color: #87bd3c;
+        }
+    }
+
     .carousel{
-        margin-bottom: 50px;
+        margin-top: 75px;
 
         .item_container{
             margin:10px 0;
@@ -100,6 +147,7 @@
     }
 
     .google_map {
+        margin-top: 50px;
         margin-right: 8px;
         #map {
             width: 100%;

@@ -18,7 +18,7 @@ export class LiveMapView implements OnInit, OnDestroy {
 
     private _initMap() {
         this.map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: -34.397, lng: 150.644 },
+            center: { lat: 40.2222035, lng:45.239139 },
             zoom: 8
         });
     }
