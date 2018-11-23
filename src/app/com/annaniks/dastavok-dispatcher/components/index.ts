@@ -4,3 +4,4 @@ export * from 'src/app/com/annaniks/dastavok-dispatcher/components/loading/loadi
 export * from 'src/app/com/annaniks/dastavok-dispatcher/components/orders-list/orders-list.component';
 export * from 'src/app/com/annaniks/dastavok-dispatcher/components/orders-list/orders-list-item/orders-list-item.component';
 export * from 'src/app/com/annaniks/dastavok-dispatcher/components/paginator/paginator.component';
+export * from 'src/app/com/annaniks/dastavok-dispatcher/components/card/card.component';
