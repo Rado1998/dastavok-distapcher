@@ -1,0 +1,22 @@
+<div class="content">
+    <div class="container" position-relative>
+        <form [formGroup]="driverForm">
+            <div class="form_group">
+                <label>Driver</label>
+                <p-dropdown full-width [options]="drivers" placeholder="Choose" formControlName="driver" optionLabel="fullName" class="dropdown"></p-dropdown>
+            </div>
+            <div class="form_group">
+                <label>Driver to restaurant date</label>
+                <p-calendar formControlName="restaurtantDate" [showTime]="true"></p-calendar>
+            </div>
+            <div class="form_group">
+                <label>Driver to client date</label>
+                <p-calendar formControlName="clientDate" [showTime]="true"></p-calendar>
+            </div>
+            <div class="button" width-fit margin-horizontal-auto>
+                <button class="save" [ngClass]="{'valid':driverForm.valid,'inValid':driverForm.invalid}" (click)="onClickSave()">SAVE</button>
+            </div>
+        </form>
+        <app-loading [visiblity]="loading"></app-loading>
+    </div> 
+</div>

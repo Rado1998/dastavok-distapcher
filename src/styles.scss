@@ -2,6 +2,8 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese');
 @import url('src/app/com/annaniks/styles/variables.scss');
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 * {
     outline: none;
     font-family: 'Open Sans';
@@ -19,3 +21,8 @@ body {
 .valid {
     opacity: 1;
 }
+
+.mat-dialog-container{
+    overflow: inherit !important;
+}
+

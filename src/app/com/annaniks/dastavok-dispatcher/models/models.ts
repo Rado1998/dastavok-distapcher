@@ -67,10 +67,13 @@ export interface Paginator<T> {
     result: T
 }
 
-export interface Order {
-    client: object;
+export class Order {
+    address: Address;
+    buyDate: string;
+    client: Client
     clientId: number;
-    company: object;
+    comment: string;
+    company: Company
     companyId: number;
     createdAt: string;
     dispatcherId: number;
@@ -82,40 +85,112 @@ export interface Order {
     name: string;
     orderCompleteDate: string;
     orderStartDate: string;
+    reviewId: number;
     status: string;
     totalAmount: number;
     updatedAt: string;
 
+    constructor() {
+        this.address = {} as Address;
+        this.buyDate = '';
+        this.client = {} as Client;
+        this.clientId = 0;
+        this.comment = '';
+        this.company = {} as Company;
+        this.companyId = 0;
+        this.createdAt = '';
+        this.dispatcherId = 0;
+        this.driverId = 0;
+        this.driverToClientDate = '';
+        this.driverToRestaurantDate = '';
+        this.goods = [];
+        this.id = 0;
+        this.name = '';
+        this.orderCompleteDate = '';
+        this.orderStartDate = '';
+        this.reviewId = 0;
+        this.status = '';
+        this.totalAmount = 0;
+        this.updatedAt = '';
+    }
+
 }
 
 export interface Company {
-    address: string;
-    code: number;
-    companyType: string;
-    confirmed: boolean;
-    createdAt: string;
-    description: string;
-    email: string;
-    id: number;
+    companyaddress: Address;
+    companydescription: string;
+    companyemail: string;
+    companyid: number;
     companyimage: string;
-    name: string;
-    phoneNumber: string;
-    updatedAt: string;
-    userName: string;
-    zipCode: number;
+    companyname: string;
+    companyphonenumber: string;
+    companytype: string;
+    companyusername: string;
+    companyzipcode: number
 }
 
 export interface Good {
+    companyId: number;
     createdAt: string;
     description: string;
     goodTypeId: number;
+    goodtypename: string;
     id: number;
     images: string;
     isDeal: boolean;
     name: string;
     price: number;
-    readTime: number;
+    readyTime: number;
     thumbnail: string;
     unitId: number;
+    unitsname: string;
+    unitssympol: string;
     updatedAt: string;
+}
+
+export interface CarouselItem {
+    image: string;
+    name: string;
+    price: number;
+    readyTime: number;
+}
+
+interface Address {
+    lat: number,
+    lng: number,
+    text: string;
+}
+
+interface Client {
+    address: Array<Address>;
+    balance: number;
+    fullName: string;
+    id: number;
+    phoneNumber: string;
+    userName: string;
+}
+
+export interface Confirm {
+    confirm: boolean;
+}
+
+export interface Driver{
+    id:number;
+    firstName:string;
+    lastName:string;
+    fullName?
+    coordinate:Coordinate
+}
+
+export interface DelieveDetailsData{
+    orderId?;
+    driverId?;
+    driverToRestaurantDate?;
+    driverToClientDate?;
+    change:boolean;
+}
+
+interface Coordinate{
+    lat:number;
+    lng:number;
 }

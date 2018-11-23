@@ -1,0 +1,33 @@
+.content{
+    .container{
+        .form_group{
+           margin-bottom: 10px;
+        }
+    }
+    .button{
+        .save{
+            background-color: #87bd3c;
+            width: 154px;
+            color: white;
+            padding: 14px;
+            margin: 25px 0 0 0;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+        }
+    }
+}
+
+:host::ng-deep .ui-dropdown{
+    width: 100% !important;
+}
+
+:host::ng-deep .ui-inputtext{
+    width: 100%;
+}
+
+:host::ng-deep .ui-calendar{
+    width: 100%;
+}
+
+

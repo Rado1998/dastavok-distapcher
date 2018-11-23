@@ -12,16 +12,19 @@ export class OrdersListItemComponent implements OnInit, OnDestroy {
 
     constructor(@Inject('BASE_URL') private _baseUrl: string, private _router: Router) { }
 
-    ngOnInit() {
-        console.log(this.orderInfo);
-    }
+    ngOnInit() { }
 
     public onClickMore(): void {
         this._navigateToDetails();
     }
 
     private _navigateToDetails(): void {
-        this._router.navigate([`/orders/${this.orderInfo.status}/${this.orderInfo.id}`])
+        let status = this.orderInfo.status;
+        console.log(status);
+        if (status === 'start' || status === 'accepted' || status === 'onway') {
+            status = 'inprocess';
+        }
+        this._router.navigate([`/orders/${status}/${this.orderInfo.id}`])
     }
 
     public setCompanyImage(): object {

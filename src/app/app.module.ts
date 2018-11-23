@@ -7,7 +7,7 @@ import { ApiService } from './com/annaniks/dastavok-dispatcher/services';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'angular2-cookie';
 import { AuthGuard } from './com/annaniks/dastavok-dispatcher/guards';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,8 @@ import { AuthGuard } from './com/annaniks/dastavok-dispatcher/guards';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [
     ApiService,

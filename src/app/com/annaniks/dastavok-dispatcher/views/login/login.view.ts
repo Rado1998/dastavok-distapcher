@@ -27,7 +27,7 @@ export class LoginView implements OnInit, OnDestroy {
 
     private _formBuilder(): void {
         this.loginForm = this._fb.group({
-            username: ['dispatcher@mail.ru', Validators.required],
+            username: ['dispatcher@gmail.com', Validators.required],
             password: ['dispatcher', Validators.required]
         })
     }

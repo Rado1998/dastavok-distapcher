@@ -26,12 +26,10 @@ export class PaginatorComponent implements OnInit, OnDestroy {
     ngOnInit() { }
 
     private _setPagesCount(): void {
+        this.pages = [];
         let pageCount: number = Math.floor(this._itemsCount / this._pageLength);
         if (this._itemsCount % this._pageLength > 0) {
             pageCount += 1;
-        }
-        else {
-            this.pages = [];
         }
         for (let i = 0; i < pageCount; i++) {
             this.pages.push(i + 1);

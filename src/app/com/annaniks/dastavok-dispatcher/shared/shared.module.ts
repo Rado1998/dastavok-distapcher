@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { MaterialModule } from './material.module';
-import { LoadingComponent } from '../components';
+import { LoadingComponent, PaginatorComponent } from '../components';
 import { CommonModule } from '@angular/common';
-import { PaginatorComponent } from '../components/paginator/paginator.component';
+import { ConfirmModal } from '../modals'
 @NgModule({
-    declarations: [LoadingComponent, PaginatorComponent],
+    declarations: [LoadingComponent, PaginatorComponent, ConfirmModal],
     imports: [ClickOutsideModule, MaterialModule, CommonModule],
-    exports: [ClickOutsideModule, LoadingComponent, PaginatorComponent]
+    entryComponents: [ConfirmModal],
+    exports: [ClickOutsideModule, LoadingComponent, PaginatorComponent],
 })
 export class SharedModule { }
