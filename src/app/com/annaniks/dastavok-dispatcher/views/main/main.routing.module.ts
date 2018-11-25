@@ -19,4 +19,4 @@ let mainRoutes: Routes = [
     imports: [RouterModule.forChild(mainRoutes)],
     exports: [RouterModule]
 })
-export class MainRoutingModule { }
+export class MainRoutingModule { } 
