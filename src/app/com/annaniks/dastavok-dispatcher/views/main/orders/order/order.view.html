@@ -11,10 +11,7 @@
                 </div>
                 <app-loading [visiblity]="loading"></app-loading>
             </div>
-            <div class="order_description" position-relative>
-                <div class="status">
-                    {{orderInfo.status}}
-                </div>
+            <div class="order_description" position-relative justify-content-flex-end display-flex flex-direction-column>
                 <div class="settings" display-flex *ngIf="orderInfo.status=='seen'">
                     <button class="delete" (click)="onClickDelete()" [disabled]="!orderInfo">Delete</button>
                 </div>
@@ -52,6 +49,14 @@
                                 {{orderInfo?.company?.companyzipcode}}
                             </div>
                         </div>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Address
+                            </div>
+                            <div class="detail_value">
+                                {{orderInfo?.company?.companyaddress?.text}}
+                            </div>
+                        </div>
                     </div>
                     <div width-50>
                         <div class="detail">
@@ -85,13 +90,27 @@
                             <div class="detail_value">
                                 {{orderInfo?.buyDate}}
                             </div>
+
+                        </div>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Address
+                            </div>
+                            <div class="detail_value">
+                                {{orderInfo?.address?.text}}
+                            </div>
                         </div>
                     </div>
                 </div>
-                <button class="take" *ngIf="orderInfo.status=='new'" (click)="onClickTake()" [disabled]="!orderInfo">TAKE</button>
-                <button class="take" *ngIf="orderInfo.status=='seen'" (click)="onClickSetDriver()" [disabled]="!orderInfo">SET
-                    DRIVER</button>
-                <button class="take change" *ngIf="orderInfo.status=='start'" (click)="onClickChange()" [disabled]="!orderInfo">Change</button>
+                <div display-flex align-items-center justify-content-space-beetwen margin-top-auto padding-horizontal-sm>
+                    <div class="status">
+                        {{orderInfo.status}}
+                    </div>
+                    <button class="take" *ngIf="orderInfo.status=='new'" (click)="onClickTake()" [disabled]="!orderInfo">TAKE</button>
+                    <button class="take" *ngIf="orderInfo.status=='seen'" (click)="onClickSetDriver()" [disabled]="!orderInfo">SET
+                        DRIVER</button>
+                    <button class="take change" *ngIf="orderInfo.status=='start'" (click)="onClickChange()" [disabled]="!orderInfo">Change</button>
+                </div>
                 <app-loading [visiblity]="loading"></app-loading>
             </div>
         </div>
@@ -118,7 +137,7 @@
                 </div>
                 <div class="status">
                     <span>Completed</span>
-                    <div class="circle"  margin-left-auto>
+                    <div class="circle" margin-left-auto>
                         <div class="active_status" *ngIf="orderInfo?.status==='completed'"></div>
                     </div>
                 </div>

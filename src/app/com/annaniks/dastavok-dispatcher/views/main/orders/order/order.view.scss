@@ -43,6 +43,7 @@
                     .detail_name {
                         margin-right: 20px;
                         word-break: break-word;
+                        min-width: fit-content;
                     }
                     .detail_value {
                         word-break: break-word;
@@ -73,15 +74,9 @@
                 padding: 20px; 
                 border: none;
                 cursor: pointer;
-                position: absolute;
-                bottom:0;
-                left: 0.5em;
             }
 
             .take{
-                position: absolute;
-                bottom:0;
-                right: 0.5em;
                 background-color: #87bd3c;
                 width: 154px;
                 color: white;

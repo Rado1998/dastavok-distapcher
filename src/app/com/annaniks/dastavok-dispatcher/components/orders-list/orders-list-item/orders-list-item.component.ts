@@ -9,10 +9,14 @@ import { Router } from '@angular/router';
 })
 export class OrdersListItemComponent implements OnInit, OnDestroy {
     @Input('orderInfo') public orderInfo: BriefOrder = {} as BriefOrder;
-
+    public localImage:string='/assets/images/avatar.png';
+    
     constructor(@Inject('BASE_URL') private _baseUrl: string, private _router: Router) { }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this._setCompanyImage();
+        console.log(this.orderInfo);
+    }
 
     public onClickMore(): void {
         this._navigateToDetails();
@@ -20,21 +24,16 @@ export class OrdersListItemComponent implements OnInit, OnDestroy {
 
     private _navigateToDetails(): void {
         let status = this.orderInfo.status;
-        console.log(status);
         if (status === 'start' || status === 'accepted' || status === 'onway') {
             status = 'inprocess';
         }
         this._router.navigate([`/orders/${status}/${this.orderInfo.id}`])
     }
 
-    public setCompanyImage(): object {
-        let styles = {
-            'background-image': 'url(/assets/images/avatar.png)'
-        }
+    private _setCompanyImage(): void {
         if (this.orderInfo.company.companyimage) {
-            styles["background-image"] = `${this._baseUrl}/static/${this.orderInfo.company.companyimage}`
+            this.localImage = `${this._baseUrl}/static/${this.orderInfo.company.companyimage}`
         }
-        return styles;
     }
 
     ngOnDestroy() { }

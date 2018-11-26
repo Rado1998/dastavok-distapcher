@@ -1,12 +1,11 @@
 <div class="orders_list_item">
     <div class="content">
-        <div class="order_image" [ngStyle]="setCompanyImage()"></div>
+        <div class="order_image" [ngStyle]="{'background-image':'url('+localImage+')'}"></div>
         <div class="order_info">
             <p class="name">{{orderInfo?.company?.companyname}}</p>
+            <p class="description">{{orderInfo?.createdAt | date:'short'}}</p>
             <p class="description">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias rem laudantium accusantium
-                temporibus iste unde natus veniam nobis quaerat reiciendis necessitatibus harum maiores sapiente, hic
-                vitae eius voluptatem praesentium a.
+                {{orderInfo?.comment}}
             </p>
         </div>
         <div class="order_price">
