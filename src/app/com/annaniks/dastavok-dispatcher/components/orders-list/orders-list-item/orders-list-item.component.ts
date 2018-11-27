@@ -15,7 +15,6 @@ export class OrdersListItemComponent implements OnInit, OnDestroy {
 
     ngOnInit() { 
         this._setCompanyImage();
-        console.log(this.orderInfo);
     }
 
     public onClickMore(): void {

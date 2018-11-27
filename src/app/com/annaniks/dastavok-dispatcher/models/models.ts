@@ -174,23 +174,37 @@ export interface Confirm {
     confirm: boolean;
 }
 
-export interface Driver{
-    id:number;
-    firstName:string;
-    lastName:string;
+export interface Driver {
+    id: number;
+    firstName: string;
+    lastName: string;
     fullName?
-    coordinate:Coordinate
+    coordinate: Coordinate
 }
 
-export interface DelieveDetailsData{
+export interface DelieveDetailsData {
     orderId?;
     driverId?;
     driverToRestaurantDate?;
     driverToClientDate?;
-    change:boolean;
+    change: boolean;
 }
 
-interface Coordinate{
-    lat:number;
-    lng:number;
+interface Coordinate {
+    lat: number;
+    lng: number;
+}
+
+export class DashboardInfo {
+    amount: number;
+    driverCount: number;
+    newCount: number;
+    onWayCount: number;
+
+    constructor(){
+        this.amount = 0;
+        this.driverCount = 0;
+        this.newCount = 0;
+        this.onWayCount = 0;
+    }
 }

@@ -37,9 +37,13 @@
             font-weight: 500;
             line-height: 1.2;
             color: inherit;
+            text-align: center;
             font-size: 1.25em;
         }
         .card_text{
+            text-align: center;
+            font-size: 34px;
+            margin-top: 0;
             &:last-child {
                 margin-bottom: 0;
             }
