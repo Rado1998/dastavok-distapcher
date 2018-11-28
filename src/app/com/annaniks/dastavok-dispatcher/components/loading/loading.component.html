@@ -1,3 +1,4 @@
-<div class="overlay" *ngIf="visiblity">
+<div class="overlay" *ngIf="visiblity && type=='spinner'">
     <p-progressSpinner [style]="{width: spinnerSize+'px', height: spinnerSize+'px'}"></p-progressSpinner>
 </div>
+<p-progressBar *ngIf="visiblity && type=='bar'" mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>

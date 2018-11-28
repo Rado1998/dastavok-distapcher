@@ -6,14 +6,15 @@
                 <div class="main_image" [ngStyle]="{'background-image':'url('+mainImage+')'}"></div>
                 <div class="images" display-flex flex-wrap-wrap>
                     <div class="img" (click)="onClickImage(image)" [ngStyle]="{'background-image':'url('+image+')'}"
-                        *ngFor="let image of images;let ind=index">
+                        *ngFor="let image of goodImages;let ind=index">
                     </div>
                 </div>
                 <app-loading [visiblity]="loading"></app-loading>
             </div>
             <div class="order_description" position-relative justify-content-flex-end display-flex flex-direction-column>
-                <div class="settings" display-flex *ngIf="orderInfo.status=='seen'">
-                    <button class="delete" (click)="onClickDelete()" [disabled]="!orderInfo">Delete</button>
+                <div class="settings" display-flex>
+                    <button class="delete" (click)="onClickDelete()" *ngIf="orderInfo.status=='seen'" [disabled]="!orderInfo">Delete</button>
+                    <button class="complete" (click)="onClickComplete()" *ngIf="orderInfo.status=='onway' || orderInfo.status=='start' || orderInfo.status=='accepted'">Complete</button>
                 </div>
                 <div class="order_details">
                     <div width-50 [ngStyle]="{'border-right':'2px solid rgba(185 185 185)'}">

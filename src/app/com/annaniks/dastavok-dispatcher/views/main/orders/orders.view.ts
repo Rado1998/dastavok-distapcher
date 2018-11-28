@@ -30,11 +30,15 @@ export class OrdersView implements OnInit, OnDestroy {
 
     private _getOrders(status: string, page: number, limit: number): void {
         this.loading = true;
-        this._ordersService.getOrders(status, page, limit).subscribe((response: ServerResponse<Paginator<Array<Order>>>) => {
+        this._ordersService.getOrders(status, page, limit).subscribe(
+            (response: ServerResponse<Paginator<Array<Order>>>) => {
             this.ordersCount = response.message.count;
             this.orders = response.message.result;
             this.loading = false;
-        })
+            },
+            (error)=>{
+                this.loading = false;
+            })
     }
 
     public paginate($event): void {
@@ -46,6 +50,11 @@ export class OrdersView implements OnInit, OnDestroy {
         this.orders = [];
         this.ordersCount = 0;
         this.pageLength = 10;
+        this.loading = false;
+    }
+
+    get orderStatus(){
+        return this._orderStatus;
     }
 
     ngOnDestroy() { }

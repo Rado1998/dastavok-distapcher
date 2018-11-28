@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderParams, ServerResponse, Order, CarouselItem, Good, DelieveDetailsData, Driver } from '../../../../models/models';
 import { OrdersService } from '../orders.service';
@@ -26,12 +26,7 @@ export class OrderView implements OnInit, OnDestroy {
     public mainImage: string;
     public error: string;
     public statusError: boolean = false;
-    public images: Array<string> = [
-        '/assets/images/salad.jpg',
-        '/assets/images/salad1.jpg',
-        '/assets/images/salad.jpg',
-    ]
-
+    public goodImages:Array<string> = [];
     public goodsCarousel: Array<CarouselItem> = [];
 
     constructor(
@@ -39,20 +34,20 @@ export class OrderView implements OnInit, OnDestroy {
         private _activatedRoute: ActivatedRoute,
         private _ordersService: OrdersService,
         private _matDialog: MatDialog,
-        private _appService: AppService
+        private _appService: AppService,
+        @Inject('BASE_URL') private _baseUrl:string
     ) {
         this._checkOrderId();
     }
 
     ngOnInit() {
-        this._setMainImage(this.images[0]);
         this._initMap();
     }
 
 
     private _initMap(): void {
         this.map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: 40.2222035, lng:45.239139 },
+            center: { lat: 40.2222035, lng: 45.239139 },
             zoom: 8
         });
 
@@ -76,7 +71,7 @@ export class OrderView implements OnInit, OnDestroy {
                 this._getOrder(params.orderId),
                 this._getDrivers()
             )
-            this._orderSubscirption = combined.subscribe(()=>{
+            this._orderSubscirption = combined.subscribe(() => {
                 this.loading = false;
             })
         })
@@ -90,6 +85,8 @@ export class OrderView implements OnInit, OnDestroy {
                     this.orderInfo = data.message;
                     this.loading = false;
                     this._setCarouselImages(data.message.goods);
+                    this._setGoodImages(this.orderInfo.goods);
+                    this._setMainImage(this.goodImages[0]);
                 }
                 else {
                     this.statusError = true;
@@ -206,11 +203,29 @@ export class OrderView implements OnInit, OnDestroy {
         return this._ordersService.getDrivers().pipe(
             map((data: ServerResponse<Array<Driver>>) => {
                 this.drivers = data.message;
-                this.drivers.forEach((element:Driver,index:number)=>{
+                this.drivers.forEach((element: Driver, index: number) => {
                     this._addMarker(element.coordinate);
                 })
             })
         )
+    }
+
+    public onClickComplete(): void {
+        this._openConfirmModal(this._completeOrder,this.orderInfo.id)
+    }
+
+    private _completeOrder = (orderId:number): void => {
+        this.loading = true;
+        this._ordersService.changeOrderStatus('complited', orderId).subscribe((data) => {
+            this.loading = false;
+            this._router.navigate([`/orders/complited/${orderId}`])
+        })
+    }
+
+    private _setGoodImages(goods:Array<Good>):void{
+        goods.forEach((element:Good)=>{
+            this.goodImages.push(element.thumbnail,...element.images.split(','));
+        })
     }
 
     ngOnDestroy() {

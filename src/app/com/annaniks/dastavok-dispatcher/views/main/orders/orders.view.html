@@ -1,6 +1,10 @@
+<app-loading [visiblity]="loading" [type]="'bar'"></app-loading>
 <div position-relative>
     <app-orders-list [paginator]="true" [count]="ordersCount" [data]="orders" [pageLength]="pageLength" (paginate)="paginate($event)"
         position-relative>
         <app-orders-list-item *ngFor="let item of orders" [orderInfo]="item"></app-orders-list-item>
     </app-orders-list>
+    <div class="not_found" *ngIf="!loading && orders.length==0">
+        <p>{{orderStatus}} orders not found</p>
+    </div>
 </div>

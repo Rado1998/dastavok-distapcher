@@ -7,7 +7,8 @@ import {
     GrowlModule,
     ButtonModule,
     CarouselModule,
-    CalendarModule
+    CalendarModule,
+    ProgressBarModule
 } from 'primeng/primeng';
 import { MatDialogModule } from '@angular/material';
 
@@ -21,7 +22,9 @@ import { MatDialogModule } from '@angular/material';
         InputTextModule,
         ButtonModule,
         CarouselModule,
-        CalendarModule
+        CalendarModule,
+        ProgressBarModule
+
     ],
     providers: [MessageService],
     exports: [
@@ -31,7 +34,8 @@ import { MatDialogModule } from '@angular/material';
         DropdownModule,
         ButtonModule,
         CarouselModule,
-        CalendarModule
+        CalendarModule,
+        ProgressBarModule
     ],
 })
 export class MaterialModule { }

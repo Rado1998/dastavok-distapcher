@@ -61,6 +61,20 @@
                     border: none;
                     cursor: pointer;
                 }
+
+                .complete{
+                    background-color: #28a745;
+                    width: 124px;
+                    color: white;
+                    padding: 7px 20px;
+                    margin: 8px 0 8px auto;
+                    border: none;
+                    cursor: pointer;
+                    &:hover{
+                        background-color: #1f8436;
+                        transition: background-color 0.5s;
+                    }
+                }
             }
             .status{
                 display: flex;

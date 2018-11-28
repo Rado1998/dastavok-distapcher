@@ -53,11 +53,13 @@ export class DelieveDetailsModal implements OnInit, OnDestroy {
     }
 
     private _getDrivers(): void {
+        this.loading = true;
         this._orderService.getDrivers().subscribe((data: ServerResponse<Array<Driver>>) => {
             this.drivers = data.message;
             this.drivers.forEach((element:Driver,index:number)=>{
                 element.fullName=`${element.firstName} ${element.lastName}`;
             })
+            this.loading = false;
             this._checkDetails();
         })
     }

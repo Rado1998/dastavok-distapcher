@@ -1,0 +1,13 @@
+<div class="content" position-relative>
+    <div class="filter_bar">
+        <p-calendar placeholder="Select dates" [(ngModel)]="rangeDates" (ngModelChange)="onChangeRange($event)"
+            selectionMode="range" [readonlyInput]="true"></p-calendar>
+    </div>
+    <div class="orders_chart">
+        <p-chart type="line" [data]="ordersChartData"></p-chart>
+    </div>
+    <div class="amount_chart">
+        <p-chart type="line" [data]="amountChartData"></p-chart>
+    </div>
+    <app-loading [visiblity]="loading"></app-loading>
+</div>
