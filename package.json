@@ -26,6 +26,8 @@
     "chart.js": "^2.7.3",
     "core-js": "^2.5.4",
     "ng-click-outside": "^4.0.0",
+    "ng-socket-io": "^0.2.4",
+    "ng6-socket-io": "^1.0.3",
     "primeicons": "^1.0.0",
     "primeng": "^6.1.6",
     "rxjs": "^6.0.0",
