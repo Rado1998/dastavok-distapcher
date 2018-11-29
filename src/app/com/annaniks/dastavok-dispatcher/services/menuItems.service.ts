@@ -9,7 +9,7 @@ const MENUITEMS: Array<MenuItem> = [
     { label: 'Seen Orders', routerLink: '/orders/seen' },
     { label: 'In Proccess Orders', routerLink: '/orders/inprocess' },
     { label: 'Rejected Orders', routerLink: '/orders/rejected' },
-    // { label: 'Complited Orders', routerLink: '/orders/complited' },
+    { label: 'Completed Orders', routerLink: '/orders/completed' },
     
 ]
 

@@ -9,7 +9,8 @@ export class StatisticsService {
 
     constructor(private _apiService:ApiService){}
 
-    public getStatistics(date:Date | string,lengthCount:number,type:string):Observable<ServerResponse<Array<AmountStatistics | OrdersCountStatistics>>>{
+    public getStatistics(date:Date,lengthCount:number,type:string):Observable<ServerResponse<Array<AmountStatistics | OrdersCountStatistics>>>{
+        console.log(date,lengthCount);
         return this._apiService.get(`/statistics/${date}/${lengthCount}/${type}`)
     }
 }

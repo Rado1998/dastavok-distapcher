@@ -100,7 +100,8 @@ export class DelieveDetailsModal implements OnInit, OnDestroy {
         this._orderService.changeDelieveDatils(this.data.orderId, {
             driverId: this.driverForm.get('driver').value.id,
             driverToRestaurantDate: this.driverForm.get('restaurtantDate').value,
-            driverToClientDate: this.driverForm.get('clientDate').value
+            driverToClientDate: this.driverForm.get('clientDate').value,
+            oldDriverId:this.data.driverId
         }).subscribe(
             (data: ServerResponse<string>) => {
                 this.loading = false;

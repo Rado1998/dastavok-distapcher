@@ -49,7 +49,7 @@ export class StatisticsView implements OnInit, OnDestroy {
         this._getStatistics(new Date(), 7);
     }
 
-    private _getStatistics(date: Date | string, lengthCount: number): void {
+    private _getStatistics(date: Date, lengthCount: number): void {
         this.loading = true;
         let combined = forkJoin(
             this._getAmountStatistics(date, lengthCount),
@@ -60,19 +60,20 @@ export class StatisticsView implements OnInit, OnDestroy {
         })
     }
 
-    private _getAmountStatistics(date: Date | string, lengthCount: number): Observable<void> {
-        return this._statisticsService.getStatistics(date, lengthCount, 'amount').pipe(
+    private _getAmountStatistics(date: Date, lengthCount: number): Observable<void> {
+        return this._statisticsService.getStatistics(new Date(date), lengthCount, 'amount').pipe(
             map((data: ServerResponse<Array<AmountStatistics>>) => {
-                this._amountStatistics = data.message;
+                console.log(data);
+                this._amountStatistics = data.message.reverse();
                 this._setChartData(this._amountStatistics,'amount');
             })
         )
     }
 
-    private _getOrdersCountStatistics(date: Date | string, lengthCount: number): Observable<void> {
-        return this._statisticsService.getStatistics(date, lengthCount, 'count').pipe(
+    private _getOrdersCountStatistics(date: Date, lengthCount: number): Observable<void> {
+        return this._statisticsService.getStatistics(new Date(date), lengthCount, 'count').pipe(
             map((data: ServerResponse<Array<OrdersCountStatistics>>) => {
-                this._ordersCountStatistics = data.message;
+                this._ordersCountStatistics = data.message.reverse();
                 this._setChartData(this._ordersCountStatistics,'order');
             })
         )
@@ -90,7 +91,7 @@ export class StatisticsView implements OnInit, OnDestroy {
         let end = new Date(this._datePipe.transform(endDate, 'MM/dd/yyyy'));
         let timeDiff = Math.abs(end.getTime() - start.getTime());
         let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-        return diffDays;
+        return diffDays+1;
     }
 
     private _setChartData(chartData, type: string): void {
@@ -98,14 +99,18 @@ export class StatisticsView implements OnInit, OnDestroy {
         let changeValues: Array<number> = [];
         chartData.forEach((element, index) => {
             changelabels.push(element.date)
-            changeValues.push(element.count);
+            if(type=='order')
+                changeValues.push(element.count);
+            if(type=='amount'){
+                changeValues.push(element.sum);
+            }
         })
         if (type == 'order') {
             this.ordersChartData = {
                 labels: changelabels,
                 datasets: [
                     {
-                        label: 'Total Amount',
+                        label: 'Total Orders',
                         data: changeValues,
                         fill: false,
                         borderColor: '#36A2EB'
@@ -113,7 +118,7 @@ export class StatisticsView implements OnInit, OnDestroy {
                 ]
             }
         }
-        if(type=='amount'){
+        if(type == 'amount'){
             this.amountChartData = {
                 labels: changelabels,
                 datasets: [

@@ -26,7 +26,7 @@ export class OrderView implements OnInit, OnDestroy {
     public mainImage: string;
     public error: string;
     public statusError: boolean = false;
-    public goodImages:Array<string> = [];
+    public goodImages: Array<string> = [];
     public goodsCarousel: Array<CarouselItem> = [];
 
     constructor(
@@ -35,7 +35,7 @@ export class OrderView implements OnInit, OnDestroy {
         private _ordersService: OrdersService,
         private _matDialog: MatDialog,
         private _appService: AppService,
-        @Inject('BASE_URL') private _baseUrl:string
+        @Inject('BASE_URL') private _baseUrl: string
     ) {
         this._checkOrderId();
     }
@@ -64,6 +64,12 @@ export class OrderView implements OnInit, OnDestroy {
         });
     }
 
+    private _resetProperties(): void {
+        this.goodsCarousel = [];
+        this.goodImages = [];
+        this.mainImage = '';
+    }
+
     private _checkOrderId(): void {
         this._activatedRoute.params.subscribe((params: OrderParams) => {
             this._orderStatus = params.orderStatus;
@@ -82,6 +88,7 @@ export class OrderView implements OnInit, OnDestroy {
             map(((data: ServerResponse<Order>) => {
                 let status = data.message.status;
                 if (status === this._orderStatus || ((status === 'start' || status === 'onway' || status === 'accepted') && this._orderStatus === 'inprocess')) {
+                    this._resetProperties();
                     this.orderInfo = data.message;
                     this.loading = false;
                     this._setCarouselImages(data.message.goods);
@@ -98,7 +105,7 @@ export class OrderView implements OnInit, OnDestroy {
         this.goodsCarousel = [];
         goods.forEach((element: Good) => {
             let carouselItem: CarouselItem = {
-                image: element.images,
+                image: `${this._baseUrl}/static/${element.images.split(',')[0]}`,
                 name: element.name,
                 price: element.price,
                 readyTime: element.readyTime
@@ -211,22 +218,31 @@ export class OrderView implements OnInit, OnDestroy {
     }
 
     public onClickComplete(): void {
-        this._openConfirmModal(this._completeOrder,this.orderInfo.id)
+        this._openConfirmModal(this._completeOrder, this.orderInfo.id)
     }
 
-    private _completeOrder = (orderId:number): void => {
+    private _completeOrder = (orderId: number): void => {
         this.loading = true;
-        this._ordersService.changeOrderStatus('complited', orderId).subscribe((data) => {
+        this._ordersService.changeOrderStatus('completed', orderId).subscribe((data) => {
             this.loading = false;
-            this._router.navigate([`/orders/complited/${orderId}`])
+            this._router.navigate([`/orders/completed/${orderId}`])
         })
     }
 
-    private _setGoodImages(goods:Array<Good>):void{
-        goods.forEach((element:Good)=>{
-            this.goodImages.push(element.thumbnail,...element.images.split(','));
+    private _setGoodImages(goods: Array<Good>): void {
+        goods.forEach((element: Good) => {
+            let images: Array<string> = [];
+            if (element.images) {
+                for (let elem of element.images.split(',')) {
+                    elem = `${this._baseUrl}/static/${elem}`;
+                    images.push(elem);
+                }
+            }
+            this.goodImages.push(`${this._baseUrl}/static/${element.thumbnail}`, ...images);
         })
     }
+
+
 
     ngOnDestroy() {
         this._orderSubscirption.unsubscribe();
