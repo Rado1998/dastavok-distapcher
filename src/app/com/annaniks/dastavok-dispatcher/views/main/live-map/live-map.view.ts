@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
-import { Socket } from 'ng6-socket-io';
-//import { MainService } from '../main.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
+
 declare var google: any;
 
 @Component({
@@ -11,9 +11,7 @@ declare var google: any;
 export class LiveMapView implements OnInit, OnDestroy {
     public map;
     
-    constructor(@Inject('BASE_URL') private _baseUrl:string,private _socket:Socket) { 
-        //this._socket.ioSocket(this._baseUrl);
-    }
+    constructor(private _socket:Socket) {}
 
     ngOnInit() {
         this._initMap();
@@ -29,9 +27,9 @@ export class LiveMapView implements OnInit, OnDestroy {
     }
 
     private _getLiveDrivers():void{
-        this._socket.fromEvent('drivers').subscribe((data)=>{
+        this._socket.on('drivers',(data)=>{
             console.log(data);
-        })
+        })    
     }
 
     ngOnDestroy() { }

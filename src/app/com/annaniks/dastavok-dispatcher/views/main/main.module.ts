@@ -7,17 +7,18 @@ import { CommonModule } from '@angular/common';
 import { MainService } from './main.service';
 import { MaterialModule, SharedModule } from '../../shared';
 import { AppService } from '../../services';
-import { SocketIoModule, SocketIoConfig } from 'ng6-socket-io';
-import { httpParams } from '../../params/httpParams';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { httpParams } from '../../params';
 
-const config: SocketIoConfig = { url: httpParams.socketUrl, options: {} };
-
+const config: SocketIoConfig = { url: httpParams.socketUrl, options: {transport:['websocket']} };
 
 @NgModule({
+    
     declarations: [
         MainView, 
         TopbarComponent, 
-        SlideNavComponent
+        SlideNavComponent,
+        
     ],
     imports: [
         MainRoutingModule, 
