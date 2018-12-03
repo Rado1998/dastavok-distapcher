@@ -10,12 +10,12 @@ declare var google: any;
 })
 export class LiveMapView implements OnInit, OnDestroy {
     public map;
-    
-    constructor(private _socket:Socket) {}
+
+    constructor(private _socket: Socket) {
+    }
 
     ngOnInit() {
         this._initMap();
-        //this._connectSocket();
         this._getLiveDrivers();
     }
 
@@ -26,10 +26,15 @@ export class LiveMapView implements OnInit, OnDestroy {
         });
     }
 
-    private _getLiveDrivers():void{
-        this._socket.on('drivers',(data)=>{
-            console.log(data);
-        })    
+    private _getLiveDrivers(): void {
+
+        this._socket.on('driver', function (data) {
+            console.log(data)
+        })
+
+        this._socket.emit('driver', 'dasdasda');
+
+
     }
 
     ngOnDestroy() { }

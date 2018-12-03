@@ -10,7 +10,7 @@ import { AppService } from '../../services';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { httpParams } from '../../params';
 
-const config: SocketIoConfig = { url: httpParams.socketUrl, options: {transport:['websocket']} };
+const config: SocketIoConfig = { url: httpParams.socketUrl,options:{transports:['websocket']}};
 
 @NgModule({
     

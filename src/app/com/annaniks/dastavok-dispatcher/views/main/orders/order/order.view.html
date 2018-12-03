@@ -115,7 +115,7 @@
                 <app-loading [visiblity]="loading"></app-loading>
             </div>
         </div>
-        <div class="status_bar" *ngIf="orderInfo.status=='start'" position-relative>
+        <div class="status_bar" *ngIf="orderInfo.status=='start' || orderInfo?.status==='accepted' || orderInfo?.status==='onway' || orderInfo?.status==='completed'" position-relative>
             <div class="steps">
 
                 <div class="status">
