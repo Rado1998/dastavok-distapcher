@@ -40,6 +40,7 @@ export class CompanyView implements OnInit, OnDestroy {
                 this._company = data.message;
                 this._addMarker({ lat: data.message.address.lat, lng: data.message.address.lng });
                 this.map.setCenter({ lat: data.message.address.lat, lng: data.message.address.lng });
+                this._checkCompanySeen(data.message.isSeen);
                 this.loading = false;
             },
             (error) => {
@@ -62,11 +63,17 @@ export class CompanyView implements OnInit, OnDestroy {
         });
     }
 
-    private _changeCompanyVisiblity(visiblity: boolean): void {
-        this._companiesService.changeCompanyVisiblity(true, visiblity).subscribe((data) => {
+    private _changeCompanyVisiblity(visiblity: boolean,seen:boolean=true): void {
+        this._companiesService.changeCompanyVisiblity(seen, visiblity).subscribe((data) => {
             console.log(data); 
             this.company.visibility = visiblity;
         })
+    }
+
+    private _checkCompanySeen(seen:boolean):void{
+        if(!seen){
+            this._changeCompanyVisiblity(this.company.visibility,true);
+        }
     }
 
     public onChange(event): void {
