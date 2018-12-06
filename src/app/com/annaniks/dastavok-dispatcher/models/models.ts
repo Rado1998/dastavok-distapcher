@@ -39,7 +39,7 @@ export interface MenuItem {
 export interface BriefOrder {
     address: string;
     clientId: number;
-    company: Company;
+    company: BriefCompany;
     companyId: number;
     createdAt: string;
     dispatcherId: number;
@@ -73,7 +73,7 @@ export class Order {
     client: Client
     clientId: number;
     comment: string;
-    company: Company
+    company: BriefCompany
     companyId: number;
     createdAt: string;
     dispatcherId: number;
@@ -96,7 +96,7 @@ export class Order {
         this.client = {} as Client;
         this.clientId = 0;
         this.comment = '';
-        this.company = {} as Company;
+        this.company = {} as BriefCompany;
         this.companyId = 0;
         this.createdAt = '';
         this.dispatcherId = 0;
@@ -116,7 +116,7 @@ export class Order {
 
 }
 
-export interface Company {
+export interface BriefCompany {
     companyaddress: Address;
     companydescription: string;
     companyemail: string;
@@ -128,6 +128,46 @@ export interface Company {
     companyusername: string;
     companyzipcode: number
 }
+
+export class Company{
+    address: Address;
+    code: number;
+    companyType: string;
+    confirmed: boolean;
+    createdAt: string;
+    description: string;
+    email:string;
+    id: number;
+    image: string;
+    isSeen: boolean;
+    name: string;
+    phoneNumber: string;
+    updatedAt: string;
+    userName: string;
+    visibility: boolean;
+    zipCode: number;
+
+    constructor(){
+        this.address = {} as Address;
+        this.code = 0;
+        this.companyType = '';
+        this.confirmed = false;
+        this.createdAt = '';
+        this.description = '';
+        this.email = '';
+        this.id = 0;
+        this.image = '';
+        this.isSeen = false;
+        this.name = '';
+        this.phoneNumber = '';
+        this.updatedAt = '';
+        this.userName = '';
+        this.visibility = false;
+        this.zipCode = 0;
+    }
+}
+
+
 
 export interface Good {
     companyId: number;

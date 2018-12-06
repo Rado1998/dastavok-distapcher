@@ -10,7 +10,7 @@ import {
     CalendarModule,
     ProgressBarModule
 } from 'primeng/primeng';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule,MatSlideToggleModule } from '@angular/material';
 
 
 @NgModule({
@@ -23,7 +23,8 @@ import { MatDialogModule } from '@angular/material';
         ButtonModule,
         CarouselModule,
         CalendarModule,
-        ProgressBarModule
+        ProgressBarModule,
+        MatSlideToggleModule
 
     ],
     providers: [MessageService],
@@ -35,7 +36,8 @@ import { MatDialogModule } from '@angular/material';
         ButtonModule,
         CarouselModule,
         CalendarModule,
-        ProgressBarModule
+        ProgressBarModule,
+        MatSlideToggleModule
     ],
 })
 export class MaterialModule { }

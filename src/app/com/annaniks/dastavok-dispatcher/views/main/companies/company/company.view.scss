@@ -1,0 +1,60 @@
+
+.page {
+    .container {
+        .company_images {
+            width: 350px;
+            .main_image {
+                width: 100%;
+                height: 255px;
+                background-image: url('/assets/images/salad.jpg');
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.23);
+            }
+        }
+        .company_description {
+            width: calc(100% - 350px);
+            margin-left: 10px;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+            .company_details {
+                display: flex;
+                .detail {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding:10px;
+                    //border-bottom:2px solid rgba(185 185 185);
+                    .detail_name {
+                        margin-right: 20px;
+                        word-break: break-word;
+                        min-width: fit-content;
+                    }
+                    .detail_value {
+                        word-break: break-word;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+*[width-50]{
+    width: 50%;
+}
+
+.map{
+    margin-top: 50px;
+    #map{
+        width: 100%;
+        height: 400px;
+    }
+}
+
+
+
+
+    
+
+   

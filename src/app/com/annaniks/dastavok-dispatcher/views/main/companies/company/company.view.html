@@ -1,0 +1,88 @@
+<div class="page">
+    <div error *ngIf="error">Company not found</div>
+    <div position-relative>
+        <div class="container" display-flex>
+            <div class="company_images" position-relative>
+                <div class="main_image" [ngStyle]="{'background-image':'url('+mainImage+')'}"></div>
+                <app-loading [visiblity]="loading"></app-loading>
+            </div>
+            <div class="company_description" position-relative display-flex flex-direction-column>
+                <div class="settings" display-flex>
+                    <mat-slide-toggle margin-left-auto [(ngModel)]="company.visibility" (ngModelChange)="onChange($event)">Visiblity</mat-slide-toggle>
+                </div>
+                <div class="company_details" full-width>
+                    <div full-width>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Company
+                            </div>
+                            <div class="detail_value">
+                                {{company?.name}}
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Phone
+                            </div>
+                            <div class="detail_value">
+                                {{company?.phoneNumber}}
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Type
+                            </div>
+                            <div class="detail_value">
+                                {{company?.companyType}}
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Zip Code
+                            </div>
+                            <div class="detail_value">
+                                {{company?.zipCode}}
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Address
+                            </div>
+                            <div class="detail_value">
+                                {{company?.address?.text}}
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Email
+                            </div>
+                            <div class="detail_value">
+                                {{company?.email}}
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Created
+                            </div>
+                            <div class="detail_value">
+                                {{company?.createdAt | date:'short'}}
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail_name">
+                                Updated
+                            </div>
+                            <div class="detail_value">
+                                {{company?.updatedAt | date:'short'}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <app-loading [visiblity]="loading"></app-loading>
+            </div>
+        </div>
+        <div class="map">
+            <div id="map"></div>
+        </div>
+    </div>
+</div>

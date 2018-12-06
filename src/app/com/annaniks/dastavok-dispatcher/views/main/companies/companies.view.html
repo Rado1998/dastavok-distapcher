@@ -1,0 +1,7 @@
+<app-loading [visiblity]="loading" [type]="'bar'"></app-loading>
+<app-companies-list [data]="companies" (paginate)="paginate($event)" [paginator]="true" [count]="count" [pageLength]="pageLength">
+    <app-companies-list-item [company]="item" *ngFor="let item of companies"></app-companies-list-item>
+</app-companies-list>
+<div class="not_found" *ngIf="!loading && companies.length==0">
+    <p>{{orderStatus}} orders not found</p>
+</div>

@@ -1,0 +1,18 @@
+<div class="companies_list_item" [ngStyle]="{'background-color':(!company?.isSeen)? '#eaeaea': ''}">
+    <div class="content">
+        <div class="company_image" [ngStyle]="{'background-image':'url('+localImage+')'}"></div>
+        <div class="company_info">
+            <p class="name">{{company?.name}}</p>
+            <p class="description">{{company?.createdAt | date:'short'}}</p>
+            <p class="description">
+                {{company?.companyType}}
+            </p>
+        </div>
+        <!-- <div class="order_price">
+            <p class="price">{{orderInfo?.totalAmount}} ₽</p>
+        </div> -->
+        <div class="more_info_button">
+            <input type="submit" value="More" (click)="onClickMore()">
+        </div>
+    </div>
+</div>
