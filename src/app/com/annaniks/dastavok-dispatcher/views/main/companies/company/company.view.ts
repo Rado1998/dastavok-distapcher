@@ -63,21 +63,20 @@ export class CompanyView implements OnInit, OnDestroy {
         });
     }
 
-    private _changeCompanyVisiblity(visiblity: boolean,seen:boolean=true): void {
-        this._companiesService.changeCompanyVisiblity(seen, visiblity).subscribe((data) => {
-            console.log(data); 
+    private _changeCompanyVisiblity(companyId:number,visiblity: boolean,seen:boolean=true): void {
+        this._companiesService.changeCompanyVisiblity(companyId,seen, visiblity).subscribe((data) => {
             this.company.visibility = visiblity;
         })
     }
 
     private _checkCompanySeen(seen:boolean):void{
         if(!seen){
-            this._changeCompanyVisiblity(this.company.visibility,true);
+            this._changeCompanyVisiblity(this.company.id,this.company.visibility,true);
         }
     }
 
     public onChange(event): void {
-       this._changeCompanyVisiblity(event);
+       this._changeCompanyVisiblity(this.company.id,event);
     }
 
     get company(): Company {

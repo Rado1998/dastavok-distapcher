@@ -16,10 +16,11 @@ export class CompaniesService {
         return this._apiSerivce.get(`/${companyId}/company`);
     }
 
-    public changeCompanyVisiblity(isSeen: boolean = true, visiblity: boolean = false): Observable<string> {
+    public changeCompanyVisiblity(companyId:number,isSeen: boolean = true, visiblity: boolean = false): Observable<string> {
         return this._apiSerivce.put('/company', {
             isSeen: isSeen,
-            visibility: visiblity
+            visibility: visiblity,
+            companyId:companyId
         })
     }
 }
