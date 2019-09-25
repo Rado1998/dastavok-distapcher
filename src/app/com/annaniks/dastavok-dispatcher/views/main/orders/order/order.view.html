@@ -14,7 +14,7 @@
             <div class="order_description" position-relative justify-content-flex-end display-flex flex-direction-column>
                 <div class="settings" display-flex>
                     <button class="delete" (click)="onClickDelete()" *ngIf="orderInfo.status=='seen'" [disabled]="!orderInfo">Delete</button>
-                    <button class="complete" (click)="onClickComplete()" *ngIf="orderInfo.status=='onway' || orderInfo.status=='start' || orderInfo.status=='accepted'">Complete</button>
+                    <button class="complete" (click)="onClickComplete()" *ngIf="orderInfo.status=='on-way' || orderInfo.status=='start' || orderInfo.status=='accepted'">Complete</button>
                 </div>
                 <div class="order_details">
                     <div width-50 [ngStyle]="{'border-right':'2px solid rgba(185 185 185)'}">
@@ -175,7 +175,7 @@
                     </div>
                 </ng-template>
             </p-carousel>
-            <app-loading [visiblity]="loading" [size]="80"></app-loading>
+            <!-- <app-loading [visiblity]="loading" [size]="80"></app-loading> -->
         </div>
         <div class="google_map" position-relative>
             <div id="map"></div>
