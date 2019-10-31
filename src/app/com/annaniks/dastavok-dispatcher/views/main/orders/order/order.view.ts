@@ -161,8 +161,8 @@ export class OrderView implements OnInit, OnDestroy {
 
     private _takeOrder = (orderId: number): void => {
         this.loading = true;
-        this._ordersService.changeOrderStatus('seen', orderId).subscribe((data) => {
-            this.loading = false;
+        this._ordersService.changeOrderStatus('seen', orderId).subscribe((data)=> {
+            this.loading = false; 
             this._router.navigate([`/orders/seen/${orderId}`]);
         })
     }
