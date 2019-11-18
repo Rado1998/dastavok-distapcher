@@ -1,0 +1,20 @@
+{
+    "Dashboard": "Статистика",
+    "Statistics": "Статистика",
+    "Live Map": "Живая карта",
+    "Companies": "Компании",
+    "New Orders": "Новые заказы",
+    "Seen Orders": "Виденные заказы",
+    "In Proccess Orders": "В технологическом заказе",
+    "Rejected Orders": "Отклоненные заказы",
+    "Completed Orders": "Завершенные заказы",
+    "More": "Ещё",
+    "Total Earned amount is": "Общая заработанная сумма",
+    "New orders count is": "Количество новых заказов",
+    "On way orders count is": "Количество заказов в пути",
+    "Drivers count is": "Количество водителей",
+    "Header": "Заголовок",
+    "Price": "Цена",
+    "Ready Time": "Время готовности",
+    "Name": "Имя"
+}

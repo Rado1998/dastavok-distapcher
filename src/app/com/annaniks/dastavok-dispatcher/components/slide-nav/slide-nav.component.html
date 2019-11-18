@@ -3,7 +3,7 @@
         <div class="menu_items">
             <div class="item" display-flex align-items-center j routerLinkActive="active_route" [routerLink]="item.routerLink"
                 *ngFor="let item of menuItemsService.getMenuItems()">
-                <span>{{item.label}}</span>
+                <span>{{item.label | translate }}</span>
             </div>
         </div>
     </div>
