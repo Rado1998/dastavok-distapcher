@@ -8,13 +8,13 @@
             </div>
             <div class="company_description" position-relative display-flex flex-direction-column>
                 <div class="settings" display-flex>
-                    <mat-slide-toggle margin-left-auto [(ngModel)]="company.visibility" (ngModelChange)="onChange($event)">Visiblity</mat-slide-toggle>
+                    <mat-slide-toggle margin-left-auto [(ngModel)]="company.visibility" (ngModelChange)="onChange($event)">{{'Visibility' | translate}}</mat-slide-toggle>
                 </div>
                 <div class="company_details" full-width>
                     <div full-width>
                         <div class="detail">
                             <div class="detail_name">
-                                Company
+                                {{ 'Company' | translate }}
                             </div>
                             <div class="detail_value">
                                 {{company?.name}}
@@ -22,7 +22,7 @@
                         </div>
                         <div class="detail">
                             <div class="detail_name">
-                                Phone
+                                {{ 'Phone' | translate }}
                             </div>
                             <div class="detail_value">
                                 {{company?.phoneNumber}}
@@ -30,7 +30,7 @@
                         </div>
                         <div class="detail">
                             <div class="detail_name">
-                                Type
+                                {{'Type' | translate }}
                             </div>
                             <div class="detail_value">
                                 {{company?.companyType}}
@@ -38,7 +38,7 @@
                         </div>
                         <div class="detail">
                             <div class="detail_name">
-                                Zip Code
+                                {{'Zip Code' | translate }}
                             </div>
                             <div class="detail_value">
                                 {{company?.zipCode}}
@@ -46,7 +46,7 @@
                         </div>
                         <div class="detail">
                             <div class="detail_name">
-                                Address
+                                {{'Address' | translate}}
                             </div>
                             <div class="detail_value">
                                 {{company?.address?.text}}
@@ -54,7 +54,7 @@
                         </div>
                         <div class="detail">
                             <div class="detail_name">
-                                Email
+                                {{'Email' | translate}}
                             </div>
                             <div class="detail_value">
                                 {{company?.email}}
@@ -62,7 +62,7 @@
                         </div>
                         <div class="detail">
                             <div class="detail_name">
-                                Created
+                                {{'Created' | translate }}
                             </div>
                             <div class="detail_value">
                                 {{company?.createdAt | date:'short'}}
@@ -70,7 +70,7 @@
                         </div>
                         <div class="detail">
                             <div class="detail_name">
-                                Updated
+                                {{'Updated' | translate}}
                             </div>
                             <div class="detail_value">
                                 {{company?.updatedAt | date:'short'}}

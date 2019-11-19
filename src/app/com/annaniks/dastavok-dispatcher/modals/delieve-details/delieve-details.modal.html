@@ -2,19 +2,19 @@
     <div class="container" position-relative>
         <form [formGroup]="driverForm">
             <div class="form_group">
-                <label>Driver</label>
-                <p-dropdown full-width [options]="drivers" placeholder="Choose" formControlName="driver" optionLabel="fullName" class="dropdown"></p-dropdown>
+                <label>{{'Driver' | translate}}</label>
+                <p-dropdown full-width [options]="drivers" placeholder="{{'Choose' | translate}}" formControlName="driver" optionLabel="fullName" class="dropdown"></p-dropdown>
             </div>
             <div class="form_group">
-                <label>Driver to restaurant date</label>
+                <label>{{'Driver to restaurant date' | translate}}</label>
                 <p-calendar formControlName="restaurtantDate" [showTime]="true"></p-calendar>
             </div>
             <div class="form_group">
-                <label>Driver to client date</label>
+                <label>{{'Driver to client date' | translate }}</label>
                 <p-calendar formControlName="clientDate" [showTime]="true"></p-calendar>
             </div>
             <div class="button" width-fit margin-horizontal-auto>
-                <button class="save" [ngClass]="{'valid':driverForm.valid,'inValid':driverForm.invalid}" (click)="onClickSave()">SAVE</button>
+                <button class="save" [ngClass]="{'valid':driverForm.valid,'inValid':driverForm.invalid}" (click)="onClickSave()">{{'Save' | translate}}</button>
             </div>
         </form>
         <app-loading [visiblity]="loading"></app-loading>
