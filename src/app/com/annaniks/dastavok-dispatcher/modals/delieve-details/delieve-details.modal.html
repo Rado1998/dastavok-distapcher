@@ -1,5 +1,5 @@
-<div class="content">
-    <div class="container" position-relative>
+<div class="content" >
+    <div class="container" *ngIf="checkDriver; else notDriver" position-relative>
         <form [formGroup]="driverForm">
             <div class="form_group">
                 <label>{{'Driver' | translate}}</label>
@@ -19,4 +19,9 @@
         </form>
         <app-loading [visiblity]="loading"></app-loading>
     </div> 
-</div>
+
+  
+</div> 
+<ng-template #notDriver>
+    <h2 class="error-notification">{{"Sorry, we don\'t have a driver right now" | translate}}</h2>
+</ng-template>
