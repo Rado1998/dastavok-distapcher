@@ -11,15 +11,15 @@
                 <i class="material-icons more_icon" (click)="onClickMoreInfo()" (clickOutside)="onClickedOutside($event)">expand_more</i>
                 <div class="more_info" [ngClass]="{'open':moreInfoVisible,'hide':!moreInfoVisible}">
                     <div class="item" display-flex justify-content-space-beetwen routerLink="/profile">
-                        <span>Profile</span>
+                        <span>{{'Profile' | translate}}</span>
                         <i class="material-icons">account_box</i>
                     </div>
                     <div class="item" display-flex justify-content-space-beetwen (click)="onClickLogOut()">
-                        <span>Log Out</span>
+                        <span>{{'Log Out' | translate}}</span>
                         <i class="material-icons">exit_to_app</i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> 

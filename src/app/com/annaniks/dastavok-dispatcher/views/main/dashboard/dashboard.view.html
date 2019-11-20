@@ -1,16 +1,16 @@
 <div>
     <div class="ui-g" position-relative>
         <div class="ui-g-4" no-padding-top>
-            <app-card [cardTitle]="'Total Earned amount is'" [cardText]="dashboardInfo.amount"></app-card>
+            <app-card [cardTitle]="'Total Earned amount is' | translate" [cardText]="dashboardInfo.amount"></app-card>
         </div>
         <div class="ui-g-4" no-padding-top>
-            <app-card [background]="'#28a745'" [cardTitle]="'New orders count is'" [cardText]="dashboardInfo.newCount"></app-card>
+            <app-card [background]="'#28a745'" [cardTitle]="'New orders count is' | translate" [cardText]="dashboardInfo.newCount"></app-card>
         </div>
         <div class="ui-g-4" no-padding-top>
-            <app-card [background]="'#dc3545'" [cardTitle]="'On way orders count is'" [cardText]="dashboardInfo.onWayCount"></app-card>
+            <app-card [background]="'#dc3545'" [cardTitle]="'On way orders count is' | translate" [cardText]="dashboardInfo.onWayCount"></app-card>
         </div>
         <div class="ui-g-4" no-padding-top>
-            <app-card [background]="'#17a2b8'" [cardTitle]="'Drivers count is'" [cardText]="dashboardInfo.driverCount" ></app-card>
+            <app-card [background]="'#17a2b8'" [cardTitle]="'Drivers count is' | translate" [cardText]="dashboardInfo.driverCount" ></app-card>
         </div>
         <!-- <div class="ui-g-4" no-padding-top>
             <app-card [background]="'#343a40'"></app-card>

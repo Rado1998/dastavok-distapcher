@@ -11,16 +11,19 @@
                 </div>
                 <app-loading [visiblity]="loading"></app-loading>
             </div>
-            <div class="order_description" position-relative justify-content-flex-end display-flex flex-direction-column>
+            <div class="order_description" position-relative justify-content-flex-end display-flex
+                flex-direction-column>
                 <div class="settings" display-flex>
-                    <button class="delete" (click)="onClickDelete()" *ngIf="orderInfo.status=='seen'" [disabled]="!orderInfo">Delete</button>
-                    <button class="complete" (click)="onClickComplete()" *ngIf="orderInfo.status=='on-way' || orderInfo.status=='start' || orderInfo.status=='accepted'">Complete</button>
+                    <button class="delete" (click)="onClickDelete()" *ngIf="orderInfo.status=='seen'"
+                        [disabled]="!orderInfo">{{'Delete' | translate}}</button>
+                    <button class="complete" (click)="onClickComplete()"
+                        *ngIf="orderInfo.status=='on-way' || orderInfo.status=='start' || orderInfo.status=='accepted'">{{'Complete' | translate}}</button>
                 </div>
                 <div class="order_details">
                     <div width-50 [ngStyle]="{'border-right':'2px solid rgba(185 185 185)'}">
                         <div class="detail">
                             <div class="detail_name">
-                                Company
+                                {{'Company' | translate}}
                             </div>
                             <div class="detail_value">
                                 {{orderInfo?.company?.companyname}}
@@ -28,7 +31,7 @@
                         </div>
                         <div class="detail">
                             <div class="detail_name">
-                                Phone
+                                {{'Phone' | translate}}
                             </div>
                             <div class="detail_value">
                                 {{orderInfo?.company?.companyphonenumber}}
@@ -36,7 +39,7 @@
                         </div>
                         <div class="detail">
                             <div class="detail_name">
-                                Type
+                                {{'Type' | translate}}
                             </div>
                             <div class="detail_value">
                                 {{orderInfo?.company?.companytype}}
@@ -44,7 +47,7 @@
                         </div>
                         <div class="detail">
                             <div class="detail_name">
-                                Zip Code
+                                {{'Zip Code' | translate}}
                             </div>
                             <div class="detail_value">
                                 {{orderInfo?.company?.companyzipcode}}
@@ -52,7 +55,7 @@
                         </div>
                         <div class="detail">
                             <div class="detail_name">
-                                Address
+                                {{'Address' | translate}}
                             </div>
                             <div class="detail_value">
                                 {{orderInfo?.company?.companyaddress?.text}}
@@ -70,7 +73,7 @@
                         </div>
                         <div class="detail">
                             <div class="detail_name">
-                                Phone
+                                {{'Phone' | translate}}
                             </div>
                             <div class="detail_value">
                                 {{orderInfo?.client?.phoneNumber}}
@@ -78,7 +81,7 @@
                         </div>
                         <div class="detail">
                             <div class="detail_name">
-                                Balance
+                                {{'Balance' | translate}}
                             </div>
                             <div class="detail_value">
                                 {{orderInfo?.client?.balance}}
@@ -86,16 +89,16 @@
                         </div>
                         <div class="detail">
                             <div class="detail_name">
-                                Buy Date
+                                {{'Buy Date' | translate}}
                             </div>
                             <div class="detail_value">
-                                {{orderInfo?.buyDate}}
+                                {{orderInfo?.createdAt | date:'short'}}
                             </div>
 
                         </div>
                         <div class="detail">
                             <div class="detail_name">
-                                Address
+                                {{'Address' | translate}}
                             </div>
                             <div class="detail_value">
                                 {{orderInfo?.address?.text}}
@@ -103,41 +106,46 @@
                         </div>
                     </div>
                 </div>
-                <div display-flex align-items-center justify-content-space-beetwen margin-top-auto padding-horizontal-sm>
+                <div display-flex align-items-center justify-content-space-beetwen margin-top-auto
+                    padding-horizontal-sm>
                     <div class="status">
-                        {{orderInfo.status}}
+                        {{orderInfo.status | translate}}
                     </div>
-                    <button class="take" *ngIf="orderInfo.status=='new'" (click)="onClickTake()" [disabled]="!orderInfo">TAKE</button>
-                    <button class="take" *ngIf="orderInfo.status=='seen'" (click)="onClickSetDriver()" [disabled]="!orderInfo">SET
-                        DRIVER</button>
-                    <button class="take change" *ngIf="orderInfo.status=='start'" (click)="onClickChange()" [disabled]="!orderInfo">Change</button>
+                    <button class="take" *ngIf="orderInfo.status=='new'" (click)="onClickTake()"
+                        [disabled]="!orderInfo">{{'Take' | translate}}</button>
+                    <button class="take" *ngIf="orderInfo.status=='seen'" (click)="onClickSetDriver()"
+                        [disabled]="!orderInfo">{{'Set driver' | translate}}</button>
+                    <button class="take change" *ngIf="orderInfo.status=='start'" (click)="onClickChange()"
+                        [disabled]="!orderInfo">{{'Change' | translate}}</button>
                 </div>
                 <app-loading [visiblity]="loading"></app-loading>
             </div>
         </div>
-        <div class="status_bar" *ngIf="orderInfo.status=='start' || orderInfo?.status==='accepted' || orderInfo?.status==='onway' || orderInfo?.status==='completed'" position-relative>
+        <div class="status_bar"
+            *ngIf="orderInfo.status=='start' || orderInfo?.status==='accepted' || orderInfo?.status==='onway' || orderInfo?.status==='completed'"
+            position-relative>
             <div class="steps">
 
                 <div class="status">
-                    <span>Start</span>
+                    <span>{{'Start' | translate}}</span>
                     <div class="circle">
                         <div class="active_status" *ngIf="orderInfo?.status==='start'"></div>
                     </div>
                 </div>
                 <div class="status">
-                    <span>Accepted</span>
+                    <span>{{'Accepted' | translate}}</span>
                     <div class="circle" margin-horizontal-auto>
                         <div class="active_status" *ngIf="orderInfo?.status==='accepted'"></div>
                     </div>
                 </div>
                 <div class="status">
-                    <span>On Way</span>
+                    <span>{{'On Way' | translate}}</span>
                     <div class="circle" margin-horizontal-auto>
                         <div class="active_status" *ngIf="orderInfo?.status==='onway'"></div>
                     </div>
                 </div>
                 <div class="status">
-                    <span>Completed</span>
+                    <span>{{'Completed' | translate}}</span>
                     <div class="circle" margin-left-auto>
                         <div class="active_status" *ngIf="orderInfo?.status==='completed'"></div>
                     </div>
@@ -169,7 +177,8 @@
                         </div>
                         <div class="ui-grid-row" text-align-center>
                             <div class="ui-grid-col-12">
-                                <button type="button" margin-horizontal-auto pButton icon="pi pi-search" (click)="onClickGood(good)"></button>
+                                <button type="button" margin-horizontal-auto pButton icon="pi pi-search"
+                                    (click)="onClickGood(good)"></button>
                             </div>
                         </div>
                     </div>
