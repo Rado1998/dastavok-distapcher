@@ -13,7 +13,14 @@
                         background-image: url('/assets/images/avatar.png');
                         background-position: center;
                         background-repeat: no-repeat;
-                        background-size: cover;
+                        background-size: contain;
+                    }
+                    input{
+                        display: flex;
+                        justify-content: center;
+                        cursor: pointer;
+                        width: auto;
+                        margin: 10px auto;
                     }
                 }
                 .label {}

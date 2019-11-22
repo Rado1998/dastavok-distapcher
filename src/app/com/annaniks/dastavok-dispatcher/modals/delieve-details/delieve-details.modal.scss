@@ -29,5 +29,13 @@
 :host::ng-deep .ui-calendar{
     width: 100%;
 }
-
+.error-notification{
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    transform: translate(0, 50%);
+}
 

@@ -5,33 +5,33 @@
             <form [formGroup]="profileForm">
                 <div class="submit_sm" display-flex>
                     <div class="content" margin-left-auto>
-                        <input type="submit" value="Edit" (click)="onClickEdit()">
+                        <input type="submit" value="{{'Edit' | translate}}" (click)="onClickEdit()">
                     </div>
                 </div>
                 <div class="form_group">
                     <div class="image_upload">
                         <div class="image" [ngStyle]="setUserImage()"></div>
-                        <input type="file" formControlName="imagePath" (change)="changeFile($event)" *ngIf="profileForm.enabled">
+                        <input  type="file" accept="image/*" formControlName="imagePath" (change)="changeFile($event)" *ngIf="profileForm.enabled">
                     </div>
                 </div>
                 <div class="form_group">
-                    <label for="firstname">First name</label>
-                    <input type='text' placeholder="First name" formControlName="firstName" />
+                    <label for="firstname">{{'First name' | translate}}</label>
+                    <input type='text' placeholder="{{'First name' | translate}}" formControlName="firstName" />
                 </div>
                 <div class="form_group">
-                    <label for="lastname">Last name</label>
-                    <input type='text' placeholder="Last name" formControlName="lastName" />
+                    <label for="lastname">{{'Last name' | translate}}</label>
+                    <input type='text' placeholder="{{'Last name' | translate}}" formControlName="lastName" />
                 </div>
                 <div class="form_group">
-                    <label for="phoneNumber">Phone number</label>
-                    <input type='text' placeholder="Phone number" formControlName="phoneNumber" />
+                    <label for="phoneNumber">{{'Phone number' | translate}}</label>
+                    <input type='text' placeholder="{{'Phone number' | translate}}" formControlName="phoneNumber" />
                 </div>
                 <div class="form_group">
-                    <label for="email">Email</label>
-                    <input type='text' placeholder="Email" formControlName="email" />
+                    <label for="email">{{'Email' | translate}}</label>
+                    <input type='text' placeholder="{{'Email' | translate}}" formControlName="email" />
                 </div>
                 <div class="submit" *ngIf="profileForm.enabled">
-                    <input type="submit" value="Save" [disabled]='loading' [ngClass]="{'invalid':profileForm.invalid || loading,'valid':profileForm.valid && !loading}"
+                    <input type="submit" value="{{'Save' | translate}}" [disabled]='loading' [ngClass]="{'invalid':profileForm.invalid || loading,'valid':profileForm.valid && !loading}"
                         (click)="onClickSave()">
                 </div>
             </form>

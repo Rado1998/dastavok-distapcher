@@ -16,6 +16,7 @@ export class DelieveDetailsModal implements OnInit, OnDestroy {
     public error: string;
     public driverForm: FormGroup;
     public loading: boolean = false;
+    public checkDriver: boolean = true
 
     constructor(
         @Inject(MAT_DIALOG_DATA) private data: DelieveDetailsData,
@@ -56,9 +57,14 @@ export class DelieveDetailsModal implements OnInit, OnDestroy {
         this.loading = true;
         this._orderService.getDrivers().subscribe((data: ServerResponse<Array<Driver>>) => {
             this.drivers = data.message;
-            this.drivers.forEach((element:Driver,index:number)=>{
-                element.fullName=`${element.firstName} ${element.lastName}`;
-            })
+            if (data.message.length == 0) {
+                this.checkDriver = false
+            } else {                
+                this.drivers.forEach((element: Driver, index: number) => {
+                    element.fullName = `${element.firstName} ${element.lastName}`;
+                })
+            }
+
             this.loading = false;
             this._checkDetails();
         })
@@ -101,7 +107,7 @@ export class DelieveDetailsModal implements OnInit, OnDestroy {
             driverId: this.driverForm.get('driver').value.id,
             driverToRestaurantDate: this.driverForm.get('restaurtantDate').value,
             driverToClientDate: this.driverForm.get('clientDate').value,
-            oldDriverId:this.data.driverId
+            oldDriverId: this.data.driverId
         }).subscribe(
             (data: ServerResponse<string>) => {
                 this.loading = false;

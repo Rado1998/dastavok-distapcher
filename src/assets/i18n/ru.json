@@ -38,7 +38,7 @@
     "Accepted": "Принято",
     "On Way": "На пути",
     "Completed": "Завершенный",
-    "Complete": "полный",
+    "Complete": "Завершать",
     "Delete": "Удалять",
     "rejected": "отклоненные",
     "orders not found": "заказы не найдены",
@@ -56,6 +56,12 @@
     "Do you confirm this operation": "Вы подтверждаете эту операцию",
     "seen": "видели",
     "Log Out":"Выйти",
-    "Profile": "Профиль"
+    "Profile": "Профиль",
+    "Sorry, we don\"'t have a driver right now": "Извините, сейчас у нас нет водителя",
+    "Phone number": "Номер телефона",
+    "Last name":"Фамилия",
+    "First name":"Имя",
+    "Edit": "Редактировать"
+  
 
 }
